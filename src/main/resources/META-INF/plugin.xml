@@ -1,0 +1,23 @@
+<idea-plugin>
+    <id>cadence-language.cadence-for-jetbrains</id>
+    <name>Cadence</name>
+    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">Cadence Support</vendor>
+
+    <description><![CDATA[
+    Support for <em>Cadence</em> language
+    ]]></description>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType name="Cadence File" implementationClass="cadence.language.CadenceFileType"
+                  fieldName="INSTANCE" language="Cadence" extensions="cdc"/>
+        <!-- Add your extensions here -->
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
