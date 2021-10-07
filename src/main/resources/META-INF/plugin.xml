@@ -14,6 +14,8 @@
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="Cadence File" implementationClass="cadence.language.CadenceFileType"
                   fieldName="INSTANCE" language="Cadence" extensions="cdc"/>
+        <lang.parserDefinition language="Cadence"
+                               implementationClass="cadence.language.CadenceParserDefinition"/>
         <!-- Add your extensions here -->
     </extensions>
 
