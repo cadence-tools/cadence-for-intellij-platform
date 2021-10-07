@@ -1,0 +1,20 @@
+{
+  parserClass="cadence.language.CadenceParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Simple"
+  psiImplClassSuffix="Impl"
+  psiPackage="cadence.language.psi"
+  psiImplPackage="cadence.language.impl"
+
+  elementTypeHolderClass="cadence.language.psi.CadenceTypes"
+  elementTypeClass="cadence.language.psi.CadenceElementType"
+  tokenTypeClass="cadence.language.psi.CadenceTokenType"
+}
+
+simpleFile ::= item_*
+
+private item_ ::= (property|COMMENT|CRLF)
+
+property ::= (KEY? SEPARATOR VALUE?) | KEY
