@@ -16,7 +16,8 @@
                   fieldName="INSTANCE" language="Cadence" extensions="cdc"/>
         <lang.parserDefinition language="Cadence"
                                implementationClass="cadence.language.CadenceParserDefinition"/>
-        <!-- Add your extensions here -->
+        <lang.syntaxHighlighterFactory language="Cadence"
+                                       implementationClass="cadence.language.CadenceSyntaxHighlighterFactory"/>
     </extensions>
 
     <actions>
