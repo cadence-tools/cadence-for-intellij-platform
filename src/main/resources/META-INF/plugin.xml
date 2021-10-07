@@ -18,6 +18,7 @@
                                implementationClass="cadence.language.CadenceParserDefinition"/>
         <lang.syntaxHighlighterFactory language="Cadence"
                                        implementationClass="cadence.language.CadenceSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="cadence.language.CadenceColorSettingsPage"/>
     </extensions>
 
     <actions>
