@@ -3,7 +3,7 @@
 
   extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
 
-  psiClassPrefix="Simple"
+  psiClassPrefix="Cadence"
   psiImplClassSuffix="Impl"
   psiPackage="cadence.language.psi"
   psiImplPackage="cadence.language.impl"
@@ -13,7 +13,7 @@
   tokenTypeClass="cadence.language.psi.CadenceTokenType"
 }
 
-simpleFile ::= item_*
+cadenceFile ::= item_*
 
 private item_ ::= (property|COMMENT|CRLF)
 
