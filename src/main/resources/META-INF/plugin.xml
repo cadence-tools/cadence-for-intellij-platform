@@ -24,6 +24,45 @@
         <lang.syntaxHighlighterFactory language="Cadence"
                                        implementationClass="cadence.language.syntax.highlighting.CadenceSyntaxHighlighterFactory"/>
         <colorSettingsPage implementation="cadence.language.syntax.highlighting.CadenceColorSettingsPage"/>
+
+        <!-- LSP Support through ballerina -->
+
+        <preloadingActivity implementation="cadence.language.CadenceLanguageServerPreloadingActivity"
+                            id="cadence.language.CadenceLanguageServerPreloadingActivity" />
+        <!-- register intellijLanguageClient as a Service OR as a plugin component (see readme)... -->
+        <applicationService serviceImplementation="org.wso2.lsp4intellij.IntellijLanguageClient"/>
+
+        <!-- register a listener on editor events, required for lsp file sync -->
+        <editorFactoryListener implementation="org.wso2.lsp4intellij.listeners.LSPEditorListener"/>
+        <fileDocumentManagerListener implementation="org.wso2.lsp4intellij.listeners.LSPFileDocumentManagerListener"/>
+
+        <!-- for displaying notifications by lsp -->
+        <notificationGroup id="lsp" displayType="STICKY_BALLOON"/>
+
+        <!-- for displaying the statusbar icon
+        <statusBarWidgetFactory implementation="org.wso2.lsp4intellij.statusbar.LSPServerStatusWidgetFactory"
+                                id="org.wso2.lsp4intellij.statusbar.LSPServerStatusWidgetFactory"
+                                order="first" />
+-->
+        <!-- needed for completion -->
+        <completion.contributor implementationClass="org.wso2.lsp4intellij.contributors.LSPCompletionContributor"
+                                id="org.wso2.lsp4intellij.contributors.LSPCompletionContributor" language="Cadence"/>
+        <!-- needed for completion as well as signature help -->
+        <typedHandler implementation="org.wso2.lsp4intellij.listeners.LSPTypedHandler"
+                      id="LSPTypedHandler"/>
+
+        <!-- needed for code diagnostics -->
+        <externalAnnotator id="LSPAnnotator" language="Cadence"
+                           implementationClass="org.wso2.lsp4intellij.contributors.annotator.LSPAnnotator"/>
+
+        <!-- needed for Workspace Symbols -->
+        <gotoSymbolContributor implementation="org.wso2.lsp4intellij.contributors.symbol.LSPSymbolContributor"
+                               id="LSPSymbolContributor"/>
+
+        <!-- needed for renaming -->
+        <renameHandler implementation="org.wso2.lsp4intellij.contributors.rename.LSPRenameHandler" id="LSPRenameHandler" order="first"/>
+        <renamePsiElementProcessor implementation="org.wso2.lsp4intellij.contributors.rename.LSPRenameProcessor" id="LSPRenameProcessor" order="first"/>
+
     </extensions>
 
     <actions>

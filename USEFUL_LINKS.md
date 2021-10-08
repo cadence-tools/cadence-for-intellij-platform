@@ -24,3 +24,4 @@
 - [GrammarKit](https://github.com/JetBrains/Grammar-Kit/blob/master/TUTORIAL.md)
 - [JFlex](https://www.jflex.de/)
 - [JFlex user manual](https://www.lacl.fr/gava/cours/MIAGE/ParsingJavaL2/jflex.pdf)
+- [lsp4intellij](https://github.com/ballerina-platform/lsp4intellij)
