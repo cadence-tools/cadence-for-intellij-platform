@@ -1,11 +1,15 @@
 <idea-plugin>
     <id>cadence-language.cadence-for-jetbrains</id>
     <name>Cadence</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">Cadence Support</vendor>
+    <vendor email="kotsolakos.nikitas@gmail.com" url="http://www.example.com">Cadence Support</vendor>
 
     <description><![CDATA[
     Support for <em>Cadence</em> language
+    This plugins plans to add syntax highlighting and lsp support for Cadence language, the language for FLOW
     ]]></description>
+    <change-notes>
+        Initial insider release, with demo syntax highlight
+    </change-notes>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
          on how to target different products -->
