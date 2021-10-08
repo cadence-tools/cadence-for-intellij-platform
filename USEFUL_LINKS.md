@@ -7,7 +7,7 @@
 ## Cadence
 - [Cadence Syntax](https://docs.onflow.org/cadence/language/syntax/)
 - [Cadence VScode grammar](https://github.com/onflow/vscode-cadence/blob/master/syntaxes/cadence.tmGrammar.json)
-git
+  git
 ## Intellij Tutorials for plugins
 - [Creating custom language plugin](https://plugins.jetbrains.com/docs/intellij/custom-language-support-tutorial.html)
 - [Configuring plugin for different IDEs](https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html)

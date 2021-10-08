@@ -1,8 +1,8 @@
-# cadence-for-jetbrains
-Cadence language support for jetbrains platform IDEs
+# cadence-for-intellij-platform
+Cadence language support for intellij platform IDEs
 
 # Installation Guide
-- Open porject with Intellij
+- Open project with Intellij
 - From project structure, set the project SDK to a JDK 11
 - Build the project
 - Run the gradle task runide

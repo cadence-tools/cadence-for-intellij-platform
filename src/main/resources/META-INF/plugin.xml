@@ -1,7 +1,7 @@
 <idea-plugin>
-    <id>cadence-language.cadence-for-jetbrains</id>
+    <id>cadence-language.cadence-for-intellij-platform</id>
     <name>Cadence</name>
-    <vendor email="kotsolakos.nikitas@gmail.com" url="http://www.example.com">Cadence Support</vendor>
+    <vendor email="cadence.tools@gmail.com" url="http://www.example.com">Cadence Tools</vendor>
 
     <description><![CDATA[
     Support for <em>Cadence</em> language
