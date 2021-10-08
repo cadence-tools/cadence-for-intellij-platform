@@ -3,8 +3,9 @@ Cadence language support for intellij platform IDEs
 
 # Installation Guide
 - Open project with Intellij
-- From project structure, set the project SDK to a JDK 11
-- Build the project
+- From project structure, set the project SDK to a JDK 11, and the language level to 11
+- From project structure -> modules -> main, click the edit on the "gen" folder under sources and check the checkbox to mark it as generated
+- Build the project (run the gradle build task)
 - Run the gradle task runide
 - On the new IDE that runs, if you open a `.cdc` file you should see the flow icon and some syntax highlighting
 - If you make changes on the code, generate any sources needed, and run the runide again
