@@ -14,6 +14,8 @@
 - [Publishing plugin first time]()
 - [Plugin basics](https://plugins.jetbrains.com/docs/intellij/basics.html)
 
+## Regex Good tutorials
+- [Regexone Tutorial - Interactive](https://regexone.com)
 ## Grammars
 - [Python flex](https://upsource.jetbrains.com/idea-ce/file/idea-ce-0ed604d9c93575244a855a3df13950504ab43791/python/python-psi-impl/src/com/jetbrains/python/lexer/Python.flex)
 - [List of flex grammars](https://github.com/jflex-de/jflex/wiki/External-JFlex-Grammars)
