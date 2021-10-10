@@ -1,4 +1,10 @@
 .gradle
 .idea
 build
+
+# Generated sources from grammar-devkit and jflex
 gen
+# JFlex related
+idea-flex.skeleton
+jflex-1.7.0-2.jar
+src/main/java/cadence/language/_CadenceLexer.flex
