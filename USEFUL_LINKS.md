@@ -11,7 +11,7 @@
 ## Intellij Tutorials for plugins
 - [Creating custom language plugin](https://plugins.jetbrains.com/docs/intellij/custom-language-support-tutorial.html)
 - [Configuring plugin for different IDEs](https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html)
-- [Publishing plugin first time]()
+- [Publishing plugin first time](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html)
 - [Plugin basics](https://plugins.jetbrains.com/docs/intellij/basics.html)
 
 ## Regex Good tutorials

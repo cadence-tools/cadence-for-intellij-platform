@@ -24,6 +24,25 @@ patchPluginXml {
         Initial insider release, with demo syntax highlight for .cdc files
       """
 }
+publishPlugin {
+    channels = ['alpha']
+}
+
+signPlugin {
+    certificateChain = """
+TODO  """.stripIndent()
+
+    privateKey = """
+TODO
+  """.stripIndent()
+
+    password = "TODO"
+}
+
+publishPlugin {
+    token = "TODO"
+}
+
 test {
     useJUnitPlatform()
 }
