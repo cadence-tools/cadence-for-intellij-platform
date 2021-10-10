@@ -34,7 +34,7 @@ EndOfLineComment = "//" {InputCharacter}* {LineTerminator}?
 
 
 /* identifiers */
-Identifier = [A-Za-z][A-Za-z\R]*
+Identifier = [_A-Za-z][_A-Za-z\R]*
 
 /* integer literals */
 DecIntegerLiteral = 0 | [1-9][0-9]*
@@ -68,115 +68,161 @@ SingleCharacter = [^\r\n\'\\]
 <YYINITIAL> {
 
   /* keywords */
-  "abstract"                     { return CadenceTypes.KEYWORD; }
-  "boolean"                      { return CadenceTypes.KEYWORD; }
-  "break"                        { return CadenceTypes.KEYWORD; }
-  "byte"                         { return CadenceTypes.KEYWORD; }
-  "case"                         { return CadenceTypes.KEYWORD; }
-  "catch"                        { return CadenceTypes.KEYWORD; }
-  "char"                         { return CadenceTypes.KEYWORD; }
-  "class"                        { return CadenceTypes.KEYWORD; }
-  "const"                        { return CadenceTypes.KEYWORD; }
-  "continue"                     { return CadenceTypes.KEYWORD; }
-  "do"                           { return CadenceTypes.KEYWORD; }
-  "double"                       { return CadenceTypes.KEYWORD; }
-  "else"                         { return CadenceTypes.KEYWORD; }
-  "extends"                      { return CadenceTypes.KEYWORD; }
-  "final"                        { return CadenceTypes.KEYWORD; }
-  "finally"                      { return CadenceTypes.KEYWORD; }
-  "float"                        { return CadenceTypes.KEYWORD; }
-  "for"                          { return CadenceTypes.KEYWORD; }
-  "default"                      { return CadenceTypes.KEYWORD; }
-  "implements"                   { return CadenceTypes.KEYWORD; }
-  "import"                       { return CadenceTypes.KEYWORD; }
-  "instanceof"                   { return CadenceTypes.KEYWORD; }
-  "int"                          { return CadenceTypes.KEYWORD; }
-  "interface"                    { return CadenceTypes.KEYWORD; }
-  "long"                         { return CadenceTypes.KEYWORD; }
-  "native"                       { return CadenceTypes.KEYWORD; }
-  "new"                          { return CadenceTypes.KEYWORD; }
-  "goto"                         { return CadenceTypes.KEYWORD; }
+  // Variable declaration
+  "let"                     { return CadenceTypes.KEYWORD; }
+  "var"                     { return CadenceTypes.KEYWORD; }
+
+
+  // Control
+   "Never"                     { return CadenceTypes.KEYWORD; }
   "if"                           { return CadenceTypes.KEYWORD; }
-  "public"                       { return CadenceTypes.KEYWORD; }
-  "short"                        { return CadenceTypes.KEYWORD; }
-  "super"                        { return CadenceTypes.KEYWORD; }
-  "switch"                       { return CadenceTypes.KEYWORD; }
-  "synchronized"                 { return CadenceTypes.KEYWORD; }
-  "package"                      { return CadenceTypes.KEYWORD; }
-  "private"                      { return CadenceTypes.KEYWORD; }
-  "protected"                    { return CadenceTypes.KEYWORD; }
-  "transient"                    { return CadenceTypes.KEYWORD; }
-  "return"                       { return CadenceTypes.KEYWORD; }
-  "void"                         { return CadenceTypes.KEYWORD; }
-  "static"                       { return CadenceTypes.KEYWORD; }
-  "while"                        { return CadenceTypes.KEYWORD; }
-  "this"                         { return CadenceTypes.KEYWORD; }
-  "throw"                        { return CadenceTypes.KEYWORD; }
-  "throws"                       { return CadenceTypes.KEYWORD; }
-  "try"                          { return CadenceTypes.KEYWORD; }
-  "volatile"                     { return CadenceTypes.KEYWORD; }
-  "strictfp"                     { return CadenceTypes.KEYWORD; }
+        "else"                     { return CadenceTypes.KEYWORD; }
+        "switch"                     { return CadenceTypes.KEYWORD; }
+        "case"                     { return CadenceTypes.KEYWORD; }
+        "default"                     { return CadenceTypes.KEYWORD; }
+        "break"                     { return CadenceTypes.KEYWORD; }
+
+// Imports
+  "import"                           { return CadenceTypes.KEYWORD; }
+  "from"                           { return CadenceTypes.KEYWORD; }
+
+// Loop
+  "while"                           { return CadenceTypes.KEYWORD; }
+  "for"                           { return CadenceTypes.KEYWORD; }
+  "in"                           { return CadenceTypes.KEYWORD; }
+  "continue"                           { return CadenceTypes.KEYWORD; }
+
+  // Function
+    "fun"                     { return CadenceTypes.KEYWORD; }
+  "return"                     { return CadenceTypes.KEYWORD; }
+  "pre"                     { return CadenceTypes.KEYWORD; }
+  "post"                     { return CadenceTypes.KEYWORD; }
+  "execute"                     { return CadenceTypes.KEYWORD; }
+  "prepare"                     { return CadenceTypes.KEYWORD; }
+
+// Composite types
+  "create"                     { return CadenceTypes.KEYWORD; }
+   "destroy"                     { return CadenceTypes.KEYWORD; }
+ "init"                     { return CadenceTypes.KEYWORD; }
+  "synthetic"                     { return CadenceTypes.KEYWORD; }
+  "self"                     { return CadenceTypes.KEYWORD; }
+  "get"                     { return CadenceTypes.KEYWORD; }
+  "set"                     { return CadenceTypes.KEYWORD; }
+
+ // "pub(set)"                     { return CadenceTypes.KEYWORD; } //TODO check
+
+// events
+  "emit"                     { return CadenceTypes.KEYWORD; }
+
+// Access
+  "priv"                      { return CadenceTypes.KEYWORD; }
+  "pub"                      { return CadenceTypes.KEYWORD; }
+ // "access"                      { return CadenceTypes.KEYWORD; } //TODO probably not highlighted
+
+  // Types
+  "Void"                      { return CadenceTypes.KEYWORD; }
+
+  "Bool"                      { return CadenceTypes.KEYWORD; }
+
+  "Int8"                      { return CadenceTypes.KEYWORD; }
+  "Int16"                      { return CadenceTypes.KEYWORD; }
+  "Int32"                      { return CadenceTypes.KEYWORD; }
+  "Int64"                      { return CadenceTypes.KEYWORD; }
+  "Int128"                      { return CadenceTypes.KEYWORD; }
+  "Int256"                      { return CadenceTypes.KEYWORD; }
+
+  "UInt8"                      { return CadenceTypes.KEYWORD; }
+  "UInt16"                      { return CadenceTypes.KEYWORD; }
+  "UInt32"                      { return CadenceTypes.KEYWORD; }
+  "UInt64"                      { return CadenceTypes.KEYWORD; }
+  "UInt128"                      { return CadenceTypes.KEYWORD; }
+  "UInt256"                      { return CadenceTypes.KEYWORD; }
+
+  "Word8"                      { return CadenceTypes.KEYWORD; }
+  "Word16"                      { return CadenceTypes.KEYWORD; }
+  "Word32"                      { return CadenceTypes.KEYWORD; }
+  "Word64"                      { return CadenceTypes.KEYWORD; }
+
+  "Fix64"                     { return CadenceTypes.KEYWORD; }
+  "UFix64"                     { return CadenceTypes.KEYWORD; }
+
+   "contract"                     { return CadenceTypes.KEYWORD; }
+   "event"                     { return CadenceTypes.KEYWORD; }
+   "transaction"                     { return CadenceTypes.KEYWORD; }
+
+   "AnyStruct"                     { return CadenceTypes.KEYWORD; }
+   "AnyResource"                     { return CadenceTypes.KEYWORD; }
+   "struct"                     { return CadenceTypes.KEYWORD; }
+   "resource"                     { return CadenceTypes.KEYWORD; }
+   "interface"                     { return CadenceTypes.KEYWORD; }
+
+   "Address"                     { return CadenceTypes.KEYWORD; }  //TODO should we?
+   "PublicAccount"                     { return CadenceTypes.KEYWORD; } //TODO should we?
+   "AuthAccount"                     { return CadenceTypes.KEYWORD; } //TODO should we?
+
+   "Type"                     { return CadenceTypes.KEYWORD; } //TODO should we?
+
+
+   "String"                     { return CadenceTypes.KEYWORD; }
+   "Character"                     { return CadenceTypes.KEYWORD; }
+
+  "enum"                     { return CadenceTypes.KEYWORD; }
 
   /* boolean literals */
   "true"                         { return CadenceTypes.KEYWORD;  }
   "false"                        { return CadenceTypes.KEYWORD;  }
 
-  /* null literal */
-  "null"                         { return CadenceTypes.KEYWORD;  }
+  /* nil literal */
+  "nil"                          { return CadenceTypes.KEYWORD;  }
 
 
   /* separators */
+   "@"                            { return CadenceTypes.SEPARATOR; }
+  ";"                            { return CadenceTypes.SEPARATOR; }
   "("                            { return CadenceTypes.SEPARATOR; }
   ")"                            { return CadenceTypes.SEPARATOR; }
   "{"                            { return CadenceTypes.SEPARATOR; }
   "}"                            { return CadenceTypes.SEPARATOR; }
   "["                            { return CadenceTypes.SEPARATOR; }
   "]"                            { return CadenceTypes.SEPARATOR; }
-  ";"                            { return CadenceTypes.SEPARATOR; }
   ","                            { return CadenceTypes.SEPARATOR; }
   "."                            { return CadenceTypes.SEPARATOR; }
 
   /* operators */
+  "??"                           { return CadenceTypes.SEPARATOR; }
+  "<-!"                          { return CadenceTypes.SEPARATOR; }
+  "as?"                          { return CadenceTypes.SEPARATOR; }
   "="                            { return CadenceTypes.SEPARATOR; }
-  ">"                            { return CadenceTypes.SEPARATOR; }
-  "<"                            { return CadenceTypes.SEPARATOR; }
-  "!"                            { return CadenceTypes.SEPARATOR; }
-  "~"                            { return CadenceTypes.SEPARATOR; }
-  "?"                            { return CadenceTypes.SEPARATOR; }
-  ":"                            { return CadenceTypes.SEPARATOR; }
-  "=="                           { return CadenceTypes.SEPARATOR; }
-  "<="                           { return CadenceTypes.SEPARATOR; }
-  ">="                           { return CadenceTypes.SEPARATOR; }
-  "!="                           { return CadenceTypes.SEPARATOR; }
-  "&&"                           { return CadenceTypes.SEPARATOR; }
-  "||"                           { return CadenceTypes.SEPARATOR; }
-  "++"                           { return CadenceTypes.SEPARATOR; }
-  "--"                           { return CadenceTypes.SEPARATOR; }
+  "<->"                          { return CadenceTypes.SEPARATOR; }
+
   "+"                            { return CadenceTypes.SEPARATOR; }
   "-"                            { return CadenceTypes.SEPARATOR; }
   "*"                            { return CadenceTypes.SEPARATOR; }
   "/"                            { return CadenceTypes.SEPARATOR; }
+  "%"                            { return CadenceTypes.SEPARATOR; }
+  "!"                            { return CadenceTypes.SEPARATOR; }
+
+  "&&"                           { return CadenceTypes.SEPARATOR; }
+  "||"                           { return CadenceTypes.SEPARATOR; }
+
+  ">"                            { return CadenceTypes.SEPARATOR; }
+  "<"                            { return CadenceTypes.SEPARATOR; }
+  "=="                           { return CadenceTypes.SEPARATOR; }
+  "<="                           { return CadenceTypes.SEPARATOR; }
+  ">="                           { return CadenceTypes.SEPARATOR; }
+  "!="                           { return CadenceTypes.SEPARATOR; }
+
+  "?"                            { return CadenceTypes.SEPARATOR; }
+  ":"                            { return CadenceTypes.SEPARATOR; }
+
+  "<<"                           { return CadenceTypes.SEPARATOR; }
+  ">>"                           { return CadenceTypes.SEPARATOR; }
   "&"                            { return CadenceTypes.SEPARATOR; }
   "|"                            { return CadenceTypes.SEPARATOR; }
   "^"                            { return CadenceTypes.SEPARATOR; }
-  "%"                            { return CadenceTypes.SEPARATOR; }
-  "<<"                           { return CadenceTypes.SEPARATOR; }
-  ">>"                           { return CadenceTypes.SEPARATOR; }
-  ">>>"                          { return CadenceTypes.SEPARATOR; }
-  "+="                           { return CadenceTypes.SEPARATOR; }
-  "-="                           { return CadenceTypes.SEPARATOR; }
-  "*="                           { return CadenceTypes.SEPARATOR; }
-  "/="                           { return CadenceTypes.SEPARATOR; }
-  "&="                           { return CadenceTypes.SEPARATOR; }
-  "|="                           { return CadenceTypes.SEPARATOR; }
-  "^="                           { return CadenceTypes.SEPARATOR; }
-  "%="                           { return CadenceTypes.SEPARATOR; }
-  "<<="                          { return CadenceTypes.SEPARATOR; }
-  ">>="                          { return CadenceTypes.SEPARATOR; }
-  ">>>="                         { return CadenceTypes.SEPARATOR; }
 
   /* string literal */
-  \"                             { yybegin(STRING); }
+  \"                             { yybegin(STRING); }  //TODO escape sequences? https://docs.onflow.org/cadence/language/values-and-types/
 
   /* numeric literals */
 
