@@ -14,9 +14,13 @@ import java.util.Map;
 public class CadenceColorSettingsPage implements ColorSettingsPage {
 
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
-        new AttributesDescriptor("Key", CadenceSyntaxHighlighter.KEY),
         new AttributesDescriptor("Separator", CadenceSyntaxHighlighter.SEPARATOR),
-        new AttributesDescriptor("Value", CadenceSyntaxHighlighter.VALUE),
+        new AttributesDescriptor("Key", CadenceSyntaxHighlighter.KEYWORD),
+        new AttributesDescriptor("String", CadenceSyntaxHighlighter.STRING_VALUE),
+        new AttributesDescriptor("Number", CadenceSyntaxHighlighter.NUMERIC_VALUE),
+        new AttributesDescriptor("Comment", CadenceSyntaxHighlighter.SIMPLE_COMMENT),
+        new AttributesDescriptor("DocComment", CadenceSyntaxHighlighter.DOCUMENTATION_COMMENT),
+        new AttributesDescriptor("Identifier", CadenceSyntaxHighlighter.IDENTIFIER),
         new AttributesDescriptor("Bad Value", CadenceSyntaxHighlighter.BAD_CHARACTER)
     };
 

@@ -15,6 +15,7 @@
 
 cadenceFile ::= item_*
 
-private item_ ::= (property|COMMENT|CRLF)
+private item_ ::= (KEYWORD|SEPARATOR|comment|value|IDENTIFIER)
 
-property ::= (KEY? SEPARATOR VALUE?) | KEY
+value ::= (NUMERIC_VALUE|STRING_VALUE)
+comment ::= (SIMPLE_COMMENT|DOCUMENTATION_COMMENT)
