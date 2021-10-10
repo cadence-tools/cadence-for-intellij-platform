@@ -1,11 +1,12 @@
 <idea-plugin>
     <id>cadence-language.cadence-for-intellij-platform</id>
     <name>Cadence</name>
-    <vendor email="cadence.tools@gmail.com" url="http://www.example.com">Cadence Tools</vendor>
+    <vendor email="cadence.tools@gmail.com" url="https://cadence-tools.github.io">Cadence Tools</vendor>
 
     <description><![CDATA[
-    Support for <em>Cadence</em> language
-    This plugins plans to add syntax highlighting and lsp support for Cadence language, the language for FLOW
+    WARNING! Not fully implemented yet!
+    Support for <em><a href="https://docs.onflow.org/cadence/language/">Cadence</a></em> language.
+    This plugin provides syntax highlighting for Cadence (.cdc) files.
     ]]></description>
     <change-notes>
         Initial insider release, with demo syntax highlight
@@ -26,6 +27,5 @@
     </extensions>
 
     <actions>
-        <!-- Add your actions here -->
     </actions>
 </idea-plugin>
