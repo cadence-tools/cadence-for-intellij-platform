@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>cadence-language.cadence-for-intellij-platform</id>
     <name>Cadence</name>
-    <vendor email="cadence.tools@gmail.com" url="https://cadence-tools.github.io">Cadence Tools</vendor>
+    <vendor email="cadence.tools@gmail.com" url="https://github.com/cadence-tools/cadence-for-intellij-platform">Cadence Tools</vendor>
 
     <description><![CDATA[
     WARNING! Not fully implemented yet!
