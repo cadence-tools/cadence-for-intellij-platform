@@ -35,7 +35,14 @@ EndOfLineComment = "//" {InputCharacter}* {LineTerminator}?
 
 
 /* identifiers */
-Identifier = [_A-Za-z][_A-Za-z\R]*
+Identifier = {NameFirstCharacter}{NameLegalCharacters}\R*
+FunctionIdentifier = {NameFirstCharacter}{NameLegalCharacters}
+ParamIdentifier = {NameFirstCharacter}{NameLegalCharacters}:
+TypeIdentifier = {TypeFirstCharacter}{NameLegalCharacters}
+
+NameLegalCharacters = [_A-Za-z0-9]*
+NameFirstCharacter = [_A-Za-z]
+TypeFirstCharacter = [@_A-Za-z] // TODO confirm
 
 /* integer literals */
 DecIntegerLiteral = 0 | [1-9][0-9]*
@@ -67,7 +74,7 @@ SingleCharacter = [^\r\n\'\\]
 IdentifierFirstCharacter = [_A-Za-z]
 IdentifierCharacter = [_A-Za-z\R]*
 
-%state STRING, DEFINITION, FUNCTION_NAME
+%state STRING, DEFINITION, FUNCTION_NAME, FUNCTION_PARAMS
 
 %%
 
@@ -282,9 +289,21 @@ IdentifierCharacter = [_A-Za-z\R]*
 }
 
 <FUNCTION_NAME> {
-{WhiteSpaceOnly}                           {return CadenceTypes.SEPARATOR;}
-  {Identifier}                { yybegin(YYINITIAL); return CadenceTypes.FUNCTION_NAME; }
+ {WhiteSpaceOnly}                    {return CadenceTypes.SEPARATOR;}
+  {FunctionIdentifier}               { return CadenceTypes.FUNCTION_NAME; }
+  \(                              { yybegin(FUNCTION_PARAMS); return CadenceTypes.SEPARATOR;}
+  \)                                  { yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
 
+  /* error cases */
+ // ^({Identifier}|\R)                           { return TokenType.BAD_CHARACTER; }
+  {LineTerminator}               { return TokenType.BAD_CHARACTER; }
+}
+<FUNCTION_PARAMS> {
+ ,                                {return CadenceTypes.SEPARATOR;}
+ {WhiteSpaceOnly}                    {return CadenceTypes.SEPARATOR;}
+  {ParamIdentifier}               { return CadenceTypes.FUNCTION_PARAMETER; }
+  {TypeIdentifier}                    { return CadenceTypes.TYPE; }
+  \)                                  { yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
 
   /* error cases */
  // ^({Identifier}|\R)                           { return TokenType.BAD_CHARACTER; }

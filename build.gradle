@@ -22,8 +22,9 @@ intellij {
 patchPluginXml {
     changeNotes = """
          <ul>
-              <li>Highlight variable, resources and contract names</li>
-              <li>Highlight function names, events, structs and interfaces</li>
+              <li>Highlight variable, resources and contracts</li>
+              <li>Highlight events, structs and interfaces</li>
+              <li>Highlight function names, parameters and their types</li>
          </ul> 
       """
 }

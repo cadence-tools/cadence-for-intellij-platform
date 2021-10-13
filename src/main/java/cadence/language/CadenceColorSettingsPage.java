@@ -20,6 +20,8 @@ public class CadenceColorSettingsPage implements ColorSettingsPage {
         new AttributesDescriptor("Number", CadenceSyntaxHighlighter.NUMERIC_VALUE),
         new AttributesDescriptor("Definition", CadenceSyntaxHighlighter.DEFINITION),
         new AttributesDescriptor("Function Name", CadenceSyntaxHighlighter.FUNCTION_NAME),
+        new AttributesDescriptor("Function Parameter", CadenceSyntaxHighlighter.FUNCTION_PARAMETER),
+        new AttributesDescriptor("Type", CadenceSyntaxHighlighter.TYPE),
         new AttributesDescriptor("Comment", CadenceSyntaxHighlighter.SIMPLE_COMMENT),
         new AttributesDescriptor("DocComment", CadenceSyntaxHighlighter.DOCUMENTATION_COMMENT),
         new AttributesDescriptor("Identifier", CadenceSyntaxHighlighter.IDENTIFIER),
