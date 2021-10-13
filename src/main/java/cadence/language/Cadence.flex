@@ -67,7 +67,7 @@ SingleCharacter = [^\r\n\'\\]
 IdentifierFirstCharacter = [_A-Za-z]
 IdentifierCharacter = [_A-Za-z\R]*
 
-%state STRING, IDENTIFIER
+%state STRING, DEFINITION
 
 %%
 
@@ -75,8 +75,8 @@ IdentifierCharacter = [_A-Za-z\R]*
 
   /* keywords */
   // Variable declaration
-  "let"                     { return CadenceTypes.KEYWORD; }
-  "var"                     { return CadenceTypes.KEYWORD; }
+  "let"                     { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
+  "var"                     { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
 
 
   // Control
@@ -152,14 +152,14 @@ IdentifierCharacter = [_A-Za-z\R]*
   "Fix64"                     { return CadenceTypes.KEYWORD; }
   "UFix64"                     { return CadenceTypes.KEYWORD; }
 
-   "contract"                     { yybegin(IDENTIFIER); return CadenceTypes.KEYWORD; }
+   "contract"                     { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
    "event"                     { return CadenceTypes.KEYWORD; }
    "transaction"                     { return CadenceTypes.KEYWORD; }
 
    "AnyStruct"                     { return CadenceTypes.KEYWORD; }
    "AnyResource"                     { return CadenceTypes.KEYWORD; }
    "struct"                     { return CadenceTypes.KEYWORD; }
-   "resource"                     { return CadenceTypes.KEYWORD; }
+   "resource"                     { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
    "interface"                     { return CadenceTypes.KEYWORD; }
 
    "Address"                     { return CadenceTypes.KEYWORD; }  //TODO should we?
@@ -271,9 +271,9 @@ IdentifierCharacter = [_A-Za-z\R]*
   {LineTerminator}               { return TokenType.BAD_CHARACTER; }
 }
 
-<IDENTIFIER> {
+<DEFINITION> {
 {WhiteSpaceOnly}                           {return CadenceTypes.SEPARATOR;}
-  {Identifier}                { yybegin(YYINITIAL); return CadenceTypes.CONTRACT_NAME; }
+  {Identifier}                { yybegin(YYINITIAL); return CadenceTypes.DEFINITION; }
 
 
   /* error cases */

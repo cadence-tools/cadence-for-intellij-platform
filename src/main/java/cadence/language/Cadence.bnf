@@ -19,4 +19,4 @@ private item_ ::= (KEYWORD|SEPARATOR|comment|value|identifier)
 
 value ::= (NUMERIC_VALUE|STRING_VALUE)
 comment ::= (SIMPLE_COMMENT|DOCUMENTATION_COMMENT)
-identifier ::= (CONTRACT_NAME)
+identifier ::= (DEFINITION)
