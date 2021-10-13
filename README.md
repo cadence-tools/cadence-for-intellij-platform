@@ -6,7 +6,7 @@ Cadence language support for intellij platform IDEs
 - Alternatively, you can find it through the Jetbrains Marketplace, if you have added the <alpha> repository channel.
 
 # Compatibility
-- All Intellij Platform products, from version 2021.1 and up
+- All Intellij Platform products, from version 2021.2 and up
 
 # Building the project
 - Open project with Intellij
