@@ -19,7 +19,8 @@ import com.intellij.psi.TokenType;
 LineTerminator = \r|\n|\r\n
 InputCharacter = [^\r\n]
 
-WhiteSpace = {LineTerminator} | [ \t\f]
+WhiteSpaceOnly = [ \t\f]
+WhiteSpace = {LineTerminator} | {WhiteSpaceOnly}
 
 
 
@@ -61,7 +62,12 @@ Exponent = [eE] [+-]? [0-9]+
 StringCharacter = [^\r\n\"\\]
 SingleCharacter = [^\r\n\'\\]
 
-%state STRING
+
+/* identifiers literals */
+IdentifierFirstCharacter = [_A-Za-z]
+IdentifierCharacter = [_A-Za-z\R]*
+
+%state STRING, IDENTIFIER
 
 %%
 
@@ -146,7 +152,7 @@ SingleCharacter = [^\r\n\'\\]
   "Fix64"                     { return CadenceTypes.KEYWORD; }
   "UFix64"                     { return CadenceTypes.KEYWORD; }
 
-   "contract"                     { return CadenceTypes.KEYWORD; }
+   "contract"                     { yybegin(IDENTIFIER); return CadenceTypes.KEYWORD; }
    "event"                     { return CadenceTypes.KEYWORD; }
    "transaction"                     { return CadenceTypes.KEYWORD; }
 
@@ -262,6 +268,16 @@ SingleCharacter = [^\r\n\'\\]
 
   /* error cases */
   \\.                            { return TokenType.BAD_CHARACTER; }
+  {LineTerminator}               { return TokenType.BAD_CHARACTER; }
+}
+
+<IDENTIFIER> {
+{WhiteSpaceOnly}                           {return CadenceTypes.SEPARATOR;}
+  {Identifier}                { yybegin(YYINITIAL); return CadenceTypes.CONTRACT_NAME; }
+
+
+  /* error cases */
+ // ^({Identifier}|\R)                           { return TokenType.BAD_CHARACTER; }
   {LineTerminator}               { return TokenType.BAD_CHARACTER; }
 }
 
