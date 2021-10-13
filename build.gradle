@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'cadence-language'
-version '0.1'
+version '0.2'
 
 repositories {
     mavenCentral()
@@ -21,7 +21,8 @@ intellij {
 }
 patchPluginXml {
     changeNotes = """
-        Initial insider release, with demo syntax highlight for .cdc files
+         <ul>
+         </ul> 
       """
 }
 publishPlugin {
