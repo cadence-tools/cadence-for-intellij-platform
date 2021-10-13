@@ -23,6 +23,7 @@ patchPluginXml {
     changeNotes = """
          <ul>
               <li>Highlight variable, resources and contract names</li>
+              <li>Highlight function names, events, structs and interfaces</li>
          </ul> 
       """
 }

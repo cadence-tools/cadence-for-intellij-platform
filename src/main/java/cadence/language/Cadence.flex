@@ -67,7 +67,7 @@ SingleCharacter = [^\r\n\'\\]
 IdentifierFirstCharacter = [_A-Za-z]
 IdentifierCharacter = [_A-Za-z\R]*
 
-%state STRING, DEFINITION
+%state STRING, DEFINITION, FUNCTION_NAME
 
 %%
 
@@ -99,7 +99,7 @@ IdentifierCharacter = [_A-Za-z\R]*
   "continue"                           { return CadenceTypes.KEYWORD; }
 
   // Function
-    "fun"                     { return CadenceTypes.KEYWORD; }
+    "fun"                     { yybegin(FUNCTION_NAME); return CadenceTypes.KEYWORD; }
   "return"                     { return CadenceTypes.KEYWORD; }
   "pre"                     { return CadenceTypes.KEYWORD; }
   "post"                     { return CadenceTypes.KEYWORD; }
@@ -118,7 +118,7 @@ IdentifierCharacter = [_A-Za-z\R]*
  // "pub(set)"                     { return CadenceTypes.KEYWORD; } //TODO check
 
 // events
-  "emit"                     { return CadenceTypes.KEYWORD; }
+  "emit"                     { yybegin(FUNCTION_NAME); return CadenceTypes.KEYWORD; }
 
 // Access
   "priv"                      { return CadenceTypes.KEYWORD; }
@@ -153,14 +153,14 @@ IdentifierCharacter = [_A-Za-z\R]*
   "UFix64"                     { return CadenceTypes.KEYWORD; }
 
    "contract"                     { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
-   "event"                     { return CadenceTypes.KEYWORD; }
+   "event"                     { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
    "transaction"                     { return CadenceTypes.KEYWORD; }
 
    "AnyStruct"                     { return CadenceTypes.KEYWORD; }
    "AnyResource"                     { return CadenceTypes.KEYWORD; }
-   "struct"                     { return CadenceTypes.KEYWORD; }
+   "struct"                     { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
    "resource"                     { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
-   "interface"                     { return CadenceTypes.KEYWORD; }
+   "interface"                     { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
 
    "Address"                     { return CadenceTypes.KEYWORD; }  //TODO should we?
    "PublicAccount"                     { return CadenceTypes.KEYWORD; } //TODO should we?
@@ -274,6 +274,16 @@ IdentifierCharacter = [_A-Za-z\R]*
 <DEFINITION> {
 {WhiteSpaceOnly}                           {return CadenceTypes.SEPARATOR;}
   {Identifier}                { yybegin(YYINITIAL); return CadenceTypes.DEFINITION; }
+
+
+  /* error cases */
+ // ^({Identifier}|\R)                           { return TokenType.BAD_CHARACTER; }
+  {LineTerminator}               { return TokenType.BAD_CHARACTER; }
+}
+
+<FUNCTION_NAME> {
+{WhiteSpaceOnly}                           {return CadenceTypes.SEPARATOR;}
+  {Identifier}                { yybegin(YYINITIAL); return CadenceTypes.FUNCTION_NAME; }
 
 
   /* error cases */

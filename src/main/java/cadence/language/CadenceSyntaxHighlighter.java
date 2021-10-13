@@ -24,6 +24,8 @@ public class CadenceSyntaxHighlighter extends SyntaxHighlighterBase {
         createTextAttributesKey("CADENCE_NUMERIC_VALUE", DefaultLanguageHighlighterColors.NUMBER);
     public static final TextAttributesKey DEFINITION =
         createTextAttributesKey("CADENCE_DEFINITION", DefaultLanguageHighlighterColors.CONSTANT); //TODO better color
+    public static final TextAttributesKey FUNCTION_NAME =
+        createTextAttributesKey("CADENCE_FUNCTION_NAME", DefaultLanguageHighlighterColors.FUNCTION_DECLARATION);
     public static final TextAttributesKey SIMPLE_COMMENT =
         createTextAttributesKey("CADENCE_SIMPLE_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
     public static final TextAttributesKey DOCUMENTATION_COMMENT =
@@ -42,6 +44,7 @@ public class CadenceSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] STRING_VALUE_KEYS = new TextAttributesKey[]{STRING_VALUE};
     private static final TextAttributesKey[] NUMERIC_VALUE_KEYS = new TextAttributesKey[]{NUMERIC_VALUE};
     private static final TextAttributesKey[] DEFINITION_KEYS = new TextAttributesKey[]{DEFINITION};
+    private static final TextAttributesKey[] FUNCTION_NAME_KEYS = new TextAttributesKey[]{FUNCTION_NAME};
     private static final TextAttributesKey[] SIMPLE_COMMENT_KEYS = new TextAttributesKey[]{SIMPLE_COMMENT};
     private static final TextAttributesKey[] DOCUMENTATION_COMMENT_KEYS = new TextAttributesKey[]{DOCUMENTATION_COMMENT};
     private static final TextAttributesKey[] IDENTIFIER_KEYS = new TextAttributesKey[]{IDENTIFIER};
@@ -70,6 +73,8 @@ public class CadenceSyntaxHighlighter extends SyntaxHighlighterBase {
             return NUMERIC_VALUE_KEYS;
         } else if (tokenType.equals(CadenceTypes.DEFINITION)) {
             return DEFINITION_KEYS;
+        } else if (tokenType.equals(CadenceTypes.FUNCTION_NAME)) {
+            return FUNCTION_NAME_KEYS;
         } else if (tokenType.equals(CadenceTypes.IDENTIFIER)) {
             return IDENTIFIER_KEYS;
         } else if (tokenType.equals(TokenType.BAD_CHARACTER)) {
