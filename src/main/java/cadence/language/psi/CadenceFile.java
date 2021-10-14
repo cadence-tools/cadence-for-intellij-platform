@@ -1,7 +1,7 @@
 package cadence.language.psi;
 
-import cadence.language.CadenceFileType;
-import cadence.language.CadenceLanguage;
+import cadence.language.config.CadenceFileType;
+import cadence.language.config.CadenceLanguage;
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.FileViewProvider;

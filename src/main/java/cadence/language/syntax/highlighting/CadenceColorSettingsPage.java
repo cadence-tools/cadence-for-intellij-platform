@@ -1,5 +1,6 @@
-package cadence.language;
+package cadence.language.syntax.highlighting;
 
+import cadence.language.config.CadenceIcon;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.options.colors.AttributesDescriptor;
@@ -15,6 +16,7 @@ public class CadenceColorSettingsPage implements ColorSettingsPage {
 
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
         new AttributesDescriptor("Separator", CadenceSyntaxHighlighter.SEPARATOR),
+        new AttributesDescriptor("Operator", CadenceSyntaxHighlighter.OPERATOR),
         new AttributesDescriptor("Key", CadenceSyntaxHighlighter.KEYWORD),
         new AttributesDescriptor("String", CadenceSyntaxHighlighter.STRING_VALUE),
         new AttributesDescriptor("Number", CadenceSyntaxHighlighter.NUMERIC_VALUE),
@@ -42,7 +44,7 @@ public class CadenceColorSettingsPage implements ColorSettingsPage {
 
     @NotNull
     @Override
-    public String getDemoText() {
+    public String getDemoText() { //TODO put cadence demo text
         return "# You are reading the \".properties\" entry.\n" +
             "! The exclamation mark can also mark text as comments.\n" +
             "website = https://en.wikipedia.org/\n" +

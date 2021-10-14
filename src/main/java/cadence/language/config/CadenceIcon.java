@@ -1,4 +1,4 @@
-package cadence.language;
+package cadence.language.config;
 
 import com.intellij.openapi.util.IconLoader;
 import javax.swing.*;

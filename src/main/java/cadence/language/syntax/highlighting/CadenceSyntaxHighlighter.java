@@ -1,5 +1,6 @@
-package cadence.language;
+package cadence.language.syntax.highlighting;
 
+import cadence.language.CadenceLexerAdapter;
 import cadence.language.psi.CadenceTypes;
 import com.intellij.lexer.Lexer;
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors;
@@ -16,6 +17,9 @@ public class CadenceSyntaxHighlighter extends SyntaxHighlighterBase {
 
     public static final TextAttributesKey SEPARATOR =
         createTextAttributesKey("CADENCE_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN);
+    public static final TextAttributesKey OPERATOR =
+        createTextAttributesKey("CADENCE_OPERATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN);
+
     public static final TextAttributesKey KEYWORD =
         createTextAttributesKey("CADENCE_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey STRING_VALUE =
@@ -44,6 +48,7 @@ public class CadenceSyntaxHighlighter extends SyntaxHighlighterBase {
 
     private static final TextAttributesKey[] BAD_CHAR_KEYS = new TextAttributesKey[]{BAD_CHARACTER};
     private static final TextAttributesKey[] SEPARATOR_KEYS = new TextAttributesKey[]{SEPARATOR};
+    private static final TextAttributesKey[] OPEPARATOR_KEYS = new TextAttributesKey[]{OPERATOR};
     private static final TextAttributesKey[] KEY_KEYS = new TextAttributesKey[]{KEYWORD};
     private static final TextAttributesKey[] STRING_VALUE_KEYS = new TextAttributesKey[]{STRING_VALUE};
     private static final TextAttributesKey[] NUMERIC_VALUE_KEYS = new TextAttributesKey[]{NUMERIC_VALUE};
@@ -71,6 +76,8 @@ public class CadenceSyntaxHighlighter extends SyntaxHighlighterBase {
             return DOCUMENTATION_COMMENT_KEYS;
         } else if (tokenType.equals(CadenceTypes.SEPARATOR)) {
             return SEPARATOR_KEYS;
+        } else if (tokenType.equals(CadenceTypes.OPERATOR)) {
+            return OPEPARATOR_KEYS;
         } else if (tokenType.equals(CadenceTypes.KEYWORD)) {
             return KEY_KEYS;
         } else if (tokenType.equals(CadenceTypes.STRING_VALUE)) {

@@ -1,5 +1,6 @@
 package cadence.language;
 
+import cadence.language.config.CadenceLanguage;
 import cadence.language.psi.CadenceFile;
 import cadence.language.psi.CadenceTypes;
 import com.intellij.lang.ASTNode;

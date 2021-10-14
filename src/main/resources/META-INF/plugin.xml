@@ -17,13 +17,13 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <fileType name="Cadence File" implementationClass="cadence.language.CadenceFileType"
+        <fileType name="Cadence File" implementationClass="cadence.language.config.CadenceFileType"
                   fieldName="INSTANCE" language="Cadence" extensions="cdc"/>
         <lang.parserDefinition language="Cadence"
                                implementationClass="cadence.language.CadenceParserDefinition"/>
         <lang.syntaxHighlighterFactory language="Cadence"
-                                       implementationClass="cadence.language.CadenceSyntaxHighlighterFactory"/>
-        <colorSettingsPage implementation="cadence.language.CadenceColorSettingsPage"/>
+                                       implementationClass="cadence.language.syntax.highlighting.CadenceSyntaxHighlighterFactory"/>
+        <colorSettingsPage implementation="cadence.language.syntax.highlighting.CadenceColorSettingsPage"/>
     </extensions>
 
     <actions>

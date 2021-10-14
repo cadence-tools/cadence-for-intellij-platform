@@ -1,6 +1,6 @@
 package cadence.language.psi;
 
-import cadence.language.CadenceLanguage;
+import cadence.language.config.CadenceLanguage;
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
