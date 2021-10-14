@@ -10,3 +10,4 @@ jflex-1.7.0-2.jar
 src/main/java/cadence/language/_CadenceLexer.flex
 sign-plugin.sh
 marketplace-zip-signer-cli.jar
+src/main/resources/cadence.tmGrammar.json
