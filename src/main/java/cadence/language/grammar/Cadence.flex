@@ -35,10 +35,13 @@ EndOfLineComment = "//" {InputCharacter}* {LineTerminator}?
 
 
 /* identifiers */
-Identifier = {NameFirstCharacter}{NameLegalCharacters}\R*
-FunctionIdentifier = {NameFirstCharacter}{NameLegalCharacters}
-ParamIdentifier = {NameFirstCharacter}{NameLegalCharacters}:
+Identifier = {SimpleIdentifier}\R*
+FunctionIdentifier = {SimpleIdentifier}
+ParamIdentifier = {SimpleIdentifier}:
 TypeIdentifier = {TypeFirstCharacter}{NameLegalCharacters}
+AccessIdentifier = {SimpleIdentifier}\)
+
+SimpleIdentifier={NameFirstCharacter}{NameLegalCharacters}
 
 NameLegalCharacters = [_A-Za-z0-9]*
 NameFirstCharacter = [_A-Za-z]
@@ -74,11 +77,13 @@ SingleCharacter = [^\r\n\'\\]
 IdentifierFirstCharacter = [_A-Za-z]
 IdentifierCharacter = [_A-Za-z\R]*
 
-%state STRING, DEFINITION, FUNCTION_NAME, FUNCTION_PARAMS
+%state STRING, DEFINITION, FUNCTION_NAME, FUNCTION_PARAMS, ACCESS
 
 %%
 
 <YYINITIAL> {
+  "access"                       { yybegin(ACCESS); return CadenceTypes.KEYWORD; } //TODO not working perfectly, view FlowIDTableStaking.cdc
+  "fun"                          { yybegin(FUNCTION_NAME); return CadenceTypes.KEYWORD; } //TODO support function calls
 
 
 // Control
@@ -109,7 +114,6 @@ IdentifierCharacter = [_A-Za-z\R]*
 
 
 // Function
-  "fun"                          { yybegin(FUNCTION_NAME); return CadenceTypes.KEYWORD; }
   "return"                       { return CadenceTypes.KEYWORD; }
   "pre"                          { return CadenceTypes.KEYWORD; }
   "post"                         { return CadenceTypes.KEYWORD; }
@@ -131,7 +135,8 @@ IdentifierCharacter = [_A-Za-z\R]*
 // Access
   "priv"                         { return CadenceTypes.KEYWORD; }
   "pub"                          { return CadenceTypes.KEYWORD; }
- // "access"                   { return CadenceTypes.KEYWORD; } //TODO probably not highlighted
+
+
 
 // Types
   "Void"                         { return CadenceTypes.KEYWORD; }
@@ -308,6 +313,17 @@ IdentifierCharacter = [_A-Za-z\R]*
   {ParamIdentifier}               { return CadenceTypes.FUNCTION_PARAMETER; }
   {TypeIdentifier}                    { return CadenceTypes.TYPE; }
   \)                                  { yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
+
+  /* error cases */
+ // ^({Identifier}|\R)                           { return TokenType.BAD_CHARACTER; }
+  {LineTerminator}               { return TokenType.BAD_CHARACTER; }
+}
+
+<ACCESS> {
+{WhiteSpaceOnly}                 {return CadenceTypes.SEPARATOR;}
+{AccessIdentifier}                   { yybegin(YYINITIAL); return CadenceTypes.DEFINITION; }
+\(                               {yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
+\)                                {yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
 
   /* error cases */
  // ^({Identifier}|\R)                           { return TokenType.BAD_CHARACTER; }
