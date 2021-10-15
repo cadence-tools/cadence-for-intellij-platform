@@ -39,27 +39,27 @@ EndOfLineComment = "//" {InputCharacter}* {LineTerminator}?
 Identifier = {SimpleIdentifier}\R*
 FunctionIdentifier = {SimpleIdentifier}
 ParamIdentifier = {SimpleIdentifier}:
-TypeIdentifier = {TypeFirstCharacter}{NameLegalCharacters}
+TypeIdentifier = {SimpleIdentifier}
 AccessIdentifier = {SimpleIdentifier}\)
 
 SimpleIdentifier={NameFirstCharacter}{NameLegalCharacters}
 
 NameLegalCharacters = [_A-Za-z0-9]*
 NameFirstCharacter = [_A-Za-z]
-TypeFirstCharacter = [_A-Za-z] // TODO confirm
 
 /* integer literals */
-DecIntegerLiteral = 0 | [1-9][0-9]*
-DecLongLiteral    = {DecIntegerLiteral} [lL]
+FixPointLiteral   = {DecIntegerLiteral}\.{DecIntegerLiteral}
+DecIntegerLiteral = {DecDigit}+
+DecDigit          = [0-9]
 
-HexIntegerLiteral = 0 [xX] 0* {HexDigit} {1,8}
-HexLongLiteral    = 0 [xX] 0* {HexDigit} {1,16} [lL]
+HexIntegerLiteral = (0x)({OctDigit})+
 HexDigit          = [0-9a-fA-F]
 
-OctIntegerLiteral = 0+ [1-3]? {OctDigit} {1,15}
-OctLongLiteral    = 0+ 1? {OctDigit} {1,21} [lL]
+OctIntegerLiteral = (0o)({OctDigit})+
 OctDigit          = [0-7]
 
+BinIntegerLiteral   = (0b)({BinDigit})+
+BinDigit          = [0-1]
 /* string and character literals */
 StringCharacter = [^\r\n\"\\]
 SingleCharacter = [^\r\n\'\\]
@@ -236,19 +236,13 @@ IdentifierCharacter = [_A-Za-z\R]*
 
   /* string literal */
   \"                             { yybegin(STRING); }
+
   /* numeric literals */
-
-  /* This is matched together with the minus, because the number is too big to
-     be represented by a positive integer. */
-  "-2147483648"                  { return CadenceTypes.NUMERIC_VALUE; }
-
-  {DecIntegerLiteral}            { return CadenceTypes.NUMERIC_VALUE; }
-  {DecLongLiteral}               { return CadenceTypes.NUMERIC_VALUE; }
   {HexIntegerLiteral}            { return CadenceTypes.NUMERIC_VALUE; }
-  {HexLongLiteral}               { return CadenceTypes.NUMERIC_VALUE; }
-
   {OctIntegerLiteral}            { return CadenceTypes.NUMERIC_VALUE; }
-  {OctLongLiteral}               { return CadenceTypes.NUMERIC_VALUE; }
+  {BinIntegerLiteral}            { return CadenceTypes.NUMERIC_VALUE; }
+  {FixPointLiteral}              { return CadenceTypes.NUMERIC_VALUE; }
+  {DecIntegerLiteral}            { return CadenceTypes.NUMERIC_VALUE; }
 
   /* comments */
   {DocumentationComment}         { return CadenceTypes.DOCUMENTATION_COMMENT;}
