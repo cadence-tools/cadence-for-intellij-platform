@@ -46,7 +46,7 @@ SimpleIdentifier={NameFirstCharacter}{NameLegalCharacters}
 
 NameLegalCharacters = [_A-Za-z0-9]*
 NameFirstCharacter = [_A-Za-z]
-TypeFirstCharacter = [@_A-Za-z] // TODO confirm
+TypeFirstCharacter = [_A-Za-z] // TODO confirm
 
 /* integer literals */
 DecIntegerLiteral = 0 | [1-9][0-9]*
@@ -189,7 +189,6 @@ IdentifierCharacter = [_A-Za-z\R]*
 
 
   /* separators */
-   "@"                           { return CadenceTypes.SEPARATOR; }
   ";"                            { return CadenceTypes.SEPARATOR; }
   "("                            { return CadenceTypes.SEPARATOR; }
   ")"                            { return CadenceTypes.SEPARATOR; }
@@ -201,38 +200,39 @@ IdentifierCharacter = [_A-Za-z\R]*
   "."                            { return CadenceTypes.SEPARATOR; }
 
   /* operators */
-  "??"                           { return CadenceTypes.SEPARATOR; }
-  "<-!"                          { return CadenceTypes.SEPARATOR; }
-  "<-"                          { return CadenceTypes.SEPARATOR; }
-  "as?"                          { return CadenceTypes.SEPARATOR; }
-  "="                            { return CadenceTypes.SEPARATOR; }
-  "<->"                          { return CadenceTypes.SEPARATOR; }
+  "@"                           { return CadenceTypes.OPERATOR; }
+  "??"                           { return CadenceTypes.OPERATOR; }
+  "<-!"                          { return CadenceTypes.OPERATOR; }
+  "<-"                          { return CadenceTypes.OPERATOR; }
+  "as?"                          { return CadenceTypes.OPERATOR; }
+  "="                            { return CadenceTypes.OPERATOR; }
+  "<->"                          { return CadenceTypes.OPERATOR; }
 
-  "+"                            { return CadenceTypes.SEPARATOR; }
-  "-"                            { return CadenceTypes.SEPARATOR; }
-  "*"                            { return CadenceTypes.SEPARATOR; }
-  "/"                            { return CadenceTypes.SEPARATOR; }
-  "%"                            { return CadenceTypes.SEPARATOR; }
-  "!"                            { return CadenceTypes.SEPARATOR; }
+  "+"                            { return CadenceTypes.OPERATOR; }
+  "-"                            { return CadenceTypes.OPERATOR; }
+  "*"                            { return CadenceTypes.OPERATOR; }
+  "/"                            { return CadenceTypes.OPERATOR; }
+  "%"                            { return CadenceTypes.OPERATOR; }
+  "!"                            { return CadenceTypes.OPERATOR; }
 
-  "&&"                           { return CadenceTypes.SEPARATOR; }
-  "||"                           { return CadenceTypes.SEPARATOR; }
+  "&&"                           { return CadenceTypes.OPERATOR; }
+  "||"                           { return CadenceTypes.OPERATOR; }
 
-  ">"                            { return CadenceTypes.SEPARATOR; }
-  "<"                            { return CadenceTypes.SEPARATOR; }
-  "=="                           { return CadenceTypes.SEPARATOR; }
-  "<="                           { return CadenceTypes.SEPARATOR; }
-  ">="                           { return CadenceTypes.SEPARATOR; }
-  "!="                           { return CadenceTypes.SEPARATOR; }
+  ">"                            { return CadenceTypes.OPERATOR; }
+  "<"                            { return CadenceTypes.OPERATOR; }
+  "=="                           { return CadenceTypes.OPERATOR; }
+  "<="                           { return CadenceTypes.OPERATOR; }
+  ">="                           { return CadenceTypes.OPERATOR; }
+  "!="                           { return CadenceTypes.OPERATOR; }
 
-  "?"                            { return CadenceTypes.SEPARATOR; }
-  ":"                            { return CadenceTypes.SEPARATOR; }
+  "?"                            { return CadenceTypes.OPERATOR; }
+  ":"                            { return CadenceTypes.OPERATOR; }
 
-  "<<"                           { return CadenceTypes.SEPARATOR; }
-  ">>"                           { return CadenceTypes.SEPARATOR; }
-  "&"                            { return CadenceTypes.SEPARATOR; }
-  "|"                            { return CadenceTypes.SEPARATOR; }
-  "^"                            { return CadenceTypes.SEPARATOR; }
+  "<<"                           { return CadenceTypes.OPERATOR; }
+  ">>"                           { return CadenceTypes.OPERATOR; }
+  "&"                            { return CadenceTypes.OPERATOR; }
+  "|"                            { return CadenceTypes.OPERATOR; }
+  "^"                            { return CadenceTypes.OPERATOR; }
 
   /* string literal */
   \"                             { yybegin(STRING); }
@@ -297,6 +297,7 @@ IdentifierCharacter = [_A-Za-z\R]*
 <FUNCTION_PARAMS> {
  ,                                {return CadenceTypes.SEPARATOR;}
  {WhiteSpaceOnly}                    {return CadenceTypes.SEPARATOR;}
+  @                                 {return CadenceTypes.OPERATOR;}
   {ParamIdentifier}               { return CadenceTypes.FUNCTION_PARAMETER; }
   {TypeIdentifier}                    { return CadenceTypes.TYPE; }
   \)                                  { yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}

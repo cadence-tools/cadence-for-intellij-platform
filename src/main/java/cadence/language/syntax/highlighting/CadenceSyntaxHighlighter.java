@@ -19,7 +19,6 @@ public class CadenceSyntaxHighlighter extends SyntaxHighlighterBase {
         createTextAttributesKey("CADENCE_SEPARATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN);
     public static final TextAttributesKey OPERATOR =
         createTextAttributesKey("CADENCE_OPERATOR", DefaultLanguageHighlighterColors.OPERATION_SIGN);
-
     public static final TextAttributesKey KEYWORD =
         createTextAttributesKey("CADENCE_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey STRING_VALUE =
