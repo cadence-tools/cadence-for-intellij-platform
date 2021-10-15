@@ -9,6 +9,7 @@ import com.intellij.psi.TokenType;
 
 %class CadenceLexer
 %implements FlexLexer
+%public
 %unicode
 %function advance
 %type IElementType
@@ -59,19 +60,10 @@ OctIntegerLiteral = 0+ [1-3]? {OctDigit} {1,15}
 OctLongLiteral    = 0+ 1? {OctDigit} {1,21} [lL]
 OctDigit          = [0-7]
 
-/* floating point literals */
-FloatLiteral  = ({FLit1}|{FLit2}|{FLit3}) {Exponent}? [fF]
-DoubleLiteral = ({FLit1}|{FLit2}|{FLit3}) {Exponent}?
-
-FLit1    = [0-9]+ \. [0-9]*
-FLit2    = \. [0-9]+
-FLit3    = [0-9]+
-Exponent = [eE] [+-]? [0-9]+
-
 /* string and character literals */
 StringCharacter = [^\r\n\"\\]
 SingleCharacter = [^\r\n\'\\]
-
+UnicodeCharacter = (\\u\{)({HexDigit}){1,8}(\})
 
 /* identifiers literals */
 IdentifierFirstCharacter = [_A-Za-z]
@@ -82,7 +74,7 @@ IdentifierCharacter = [_A-Za-z\R]*
 %%
 
 <YYINITIAL> {
-  "access"                       { yybegin(ACCESS); return CadenceTypes.KEYWORD; } //TODO not working perfectly, view FlowIDTableStaking.cdc
+  "access"                       { yybegin(ACCESS); return CadenceTypes.KEYWORD; }
   "fun"                          { yybegin(FUNCTION_NAME); return CadenceTypes.KEYWORD; } //TODO support function calls
 
 
@@ -139,30 +131,30 @@ IdentifierCharacter = [_A-Za-z\R]*
 
 
 // Types
-  "Void"                         { return CadenceTypes.KEYWORD; }
-  "Bool"                         { return CadenceTypes.KEYWORD; }
+  "Void"                         { return CadenceTypes.TYPE; }
+  "Bool"                         { return CadenceTypes.TYPE; }
 
-  "Int8"                         { return CadenceTypes.KEYWORD; }
-  "Int16"                        { return CadenceTypes.KEYWORD; }
-  "Int32"                        { return CadenceTypes.KEYWORD; }
-  "Int64"                        { return CadenceTypes.KEYWORD; }
-  "Int128"                       { return CadenceTypes.KEYWORD; }
-  "Int256"                       { return CadenceTypes.KEYWORD; }
+  "Int8"                         { return CadenceTypes.TYPE; }
+  "Int16"                        { return CadenceTypes.TYPE; }
+  "Int32"                        { return CadenceTypes.TYPE; }
+  "Int64"                        { return CadenceTypes.TYPE; }
+  "Int128"                       { return CadenceTypes.TYPE; }
+  "Int256"                       { return CadenceTypes.TYPE; }
 
-  "UInt8"                        { return CadenceTypes.KEYWORD; }
-  "UInt16"                       { return CadenceTypes.KEYWORD; }
-  "UInt32"                       { return CadenceTypes.KEYWORD; }
-  "UInt64"                       { return CadenceTypes.KEYWORD; }
-  "UInt128"                      { return CadenceTypes.KEYWORD; }
-  "UInt256"                      { return CadenceTypes.KEYWORD; }
+  "UInt8"                        { return CadenceTypes.TYPE; }
+  "UInt16"                       { return CadenceTypes.TYPE; }
+  "UInt32"                       { return CadenceTypes.TYPE; }
+  "UInt64"                       { return CadenceTypes.TYPE; }
+  "UInt128"                      { return CadenceTypes.TYPE; }
+  "UInt256"                      { return CadenceTypes.TYPE; }
 
-  "Word8"                        { return CadenceTypes.KEYWORD; }
-  "Word16"                       { return CadenceTypes.KEYWORD; }
-  "Word32"                       { return CadenceTypes.KEYWORD; }
-  "Word64"                       { return CadenceTypes.KEYWORD; }
+  "Word8"                        { return CadenceTypes.TYPE; }
+  "Word16"                       { return CadenceTypes.TYPE; }
+  "Word32"                       { return CadenceTypes.TYPE; }
+  "Word64"                       { return CadenceTypes.TYPE; }
 
-  "Fix64"                        { return CadenceTypes.KEYWORD; }
-  "UFix64"                       { return CadenceTypes.KEYWORD; }
+  "Fix64"                        { return CadenceTypes.TYPE; }
+  "UFix64"                       { return CadenceTypes.TYPE; }
 
   "contract"                     { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
   "account"                      { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
@@ -177,10 +169,9 @@ IdentifierCharacter = [_A-Za-z\R]*
    "resource"                    { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
    "interface"                   { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
 
-   "Address"                     { return CadenceTypes.KEYWORD; }  //TODO should we?
-   "PublicAccount"               { return CadenceTypes.KEYWORD; } //TODO should we?
-   "AuthAccount"                 { return CadenceTypes.KEYWORD; } //TODO should we?
-   "Type"                        { return CadenceTypes.KEYWORD; } //TODO should we?
+   "Address"                     { return CadenceTypes.TYPE; }
+   "PublicAccount"               { return CadenceTypes.TYPE; }
+   "AuthAccount"                 { return CadenceTypes.TYPE; }
 
 
 
@@ -244,8 +235,7 @@ IdentifierCharacter = [_A-Za-z\R]*
   "^"                            { return CadenceTypes.SEPARATOR; }
 
   /* string literal */
-  \"                             { yybegin(STRING); }  //TODO escape sequences? https://docs.onflow.org/cadence/language/values-and-types/
-
+  \"                             { yybegin(STRING); }
   /* numeric literals */
 
   /* This is matched together with the minus, because the number is too big to
@@ -259,10 +249,6 @@ IdentifierCharacter = [_A-Za-z\R]*
 
   {OctIntegerLiteral}            { return CadenceTypes.NUMERIC_VALUE; }
   {OctLongLiteral}               { return CadenceTypes.NUMERIC_VALUE; }
-
-  {FloatLiteral}                 { return CadenceTypes.NUMERIC_VALUE; }
-  {DoubleLiteral}                { return CadenceTypes.NUMERIC_VALUE; }
-  {DoubleLiteral}[dD]            { return CadenceTypes.NUMERIC_VALUE; }
 
   /* comments */
   {DocumentationComment}         { return CadenceTypes.DOCUMENTATION_COMMENT;}
@@ -278,12 +264,13 @@ IdentifierCharacter = [_A-Za-z\R]*
 <STRING> {
   \"                             { yybegin(YYINITIAL); return CadenceTypes.STRING_VALUE; }
 
-  {StringCharacter}+             { }
+   \\n                            { return CadenceTypes.ESCAPE_SEQUENCE;}
+  (\\0|\\\\|\\t|\\n|\\r|\\\"|\\\') { return CadenceTypes.ESCAPE_SEQUENCE;}
+  {UnicodeCharacter}               { return CadenceTypes.ESCAPE_SEQUENCE;}
 
-  \\[0-3]?{OctDigit}?{OctDigit}  { }
+  {StringCharacter}+             { return CadenceTypes.STRING_VALUE; }
 
   /* error cases */
-  \\.                            { return TokenType.BAD_CHARACTER; }
   {LineTerminator}               { return TokenType.BAD_CHARACTER; }
 }
 
@@ -304,7 +291,7 @@ IdentifierCharacter = [_A-Za-z\R]*
   \)                                  { yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
 
   /* error cases */
- // ^({Identifier}|\R)                           { return TokenType.BAD_CHARACTER; }
+ // ^({Identifier}|\R)            { return TokenType.BAD_CHARACTER; }
   {LineTerminator}               { return TokenType.BAD_CHARACTER; }
 }
 <FUNCTION_PARAMS> {
@@ -321,8 +308,8 @@ IdentifierCharacter = [_A-Za-z\R]*
 
 <ACCESS> {
 {WhiteSpaceOnly}                 {return CadenceTypes.SEPARATOR;}
-{AccessIdentifier}                   { yybegin(YYINITIAL); return CadenceTypes.DEFINITION; }
-\(                               {yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
+{AccessIdentifier}               {return CadenceTypes.DEFINITION; }
+\(                               {return CadenceTypes.SEPARATOR;}
 \)                                {yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
 
   /* error cases */
