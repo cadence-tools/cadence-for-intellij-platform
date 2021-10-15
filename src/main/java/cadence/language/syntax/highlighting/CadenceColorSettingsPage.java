@@ -44,7 +44,7 @@ public class CadenceColorSettingsPage implements ColorSettingsPage {
 
     @NotNull
     @Override
-    public String getDemoText() { //TODO put cadence demo text
+    public String getDemoText() { //TODO put a nice demo text
         return "# You are reading the \".properties\" entry.\n" +
             "! The exclamation mark can also mark text as comments.\n" +
             "website = https://en.wikipedia.org/\n" +

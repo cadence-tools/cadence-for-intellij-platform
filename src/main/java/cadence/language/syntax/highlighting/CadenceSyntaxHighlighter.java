@@ -26,13 +26,13 @@ public class CadenceSyntaxHighlighter extends SyntaxHighlighterBase {
     public static final TextAttributesKey NUMERIC_VALUE =
         createTextAttributesKey("CADENCE_NUMERIC_VALUE", DefaultLanguageHighlighterColors.NUMBER);
     public static final TextAttributesKey DEFINITION =
-        createTextAttributesKey("CADENCE_DEFINITION", DefaultLanguageHighlighterColors.CONSTANT); //TODO better color
+        createTextAttributesKey("CADENCE_DEFINITION", DefaultLanguageHighlighterColors.CONSTANT); //TODO perhaps better color
     public static final TextAttributesKey FUNCTION_NAME =
         createTextAttributesKey("CADENCE_FUNCTION_NAME", DefaultLanguageHighlighterColors.INSTANCE_METHOD);
     public static final TextAttributesKey FUNCTION_PARAMETER =
-        createTextAttributesKey("CADENCE_FUNCTION_PARAMETER", DefaultLanguageHighlighterColors.INSTANCE_METHOD); //TODO same as function?
+        createTextAttributesKey("CADENCE_FUNCTION_PARAMETER", DefaultLanguageHighlighterColors.INSTANCE_METHOD); //TODO should it be same as function?
     public static final TextAttributesKey TYPE =
-        createTextAttributesKey("CADENCE_TYPE", DefaultLanguageHighlighterColors.CLASS_REFERENCE); //TODO check
+        createTextAttributesKey("CADENCE_TYPE", DefaultLanguageHighlighterColors.CLASS_REFERENCE);
     public static final TextAttributesKey SIMPLE_COMMENT =
         createTextAttributesKey("CADENCE_SIMPLE_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
     public static final TextAttributesKey DOCUMENTATION_COMMENT =
