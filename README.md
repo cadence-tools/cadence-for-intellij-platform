@@ -21,23 +21,26 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
+    </li>
+    <li>
+      <a href="#installation">Installation</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#compatibility">Compatibility</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#compatibility">Compatibility</a></li>
+      </ul>
+
   </ol>
 </details>
 
@@ -48,20 +51,17 @@
 - Cadence language support for intellij platform IDEs
 - https://plugins.jetbrains.com/plugin/17764-cadence
 
-# Installation
+# Getting Started
+## Installation
 - You can download the plugin by searching the marketplace in your Intellij Platform IDE
 - Alternative you can get it from the [Jetbrains Marketplace](https://plugins.jetbrains.com/plugin/17764-cadence)
 
-# Usage
+## Usage
 - The plugin will be immediately associated with any `.cdc` files and provide syntax highlighting.
 - It will follow the different themes / color schemes you choose from your IDE
 - You can customize the colors by going to `Settings` -> `Editor` -> `Color Scheme` -> `Cadence`
 
-# Roadmap
-- Refine syntax highlighting
-- Add support for Language Server Protocol
-
-# Compatibility
+## Compatibility
 All Intellij Platform products, from version 2021.2 and up:
 - IntelliJ IDEA Ultimate
 - IntelliJ IDEA Community
@@ -82,6 +82,10 @@ All Intellij Platform products, from version 2021.2 and up:
 - JetBrains Gateway
 - MPS
 - AppCode
+
+# Roadmap
+- Refine syntax highlighting
+- Add support for Language Server Protocol
 
 # Contributing
 - Everyone is welcome to contribute, through issues reporting or pull requests
@@ -119,7 +123,7 @@ Once a token is being recognised in the PSI structure, to add highlighting for i
 - `CadenceSyntaxHighlighter` for the actual highlighting
 - `CadenceColorSettingsPage` to add new tokens to the Color Scheme page of the IDE
 
-# Making a release
+## Making a release (only by maintainers)
 - Ensure everything is ready
 - Make any required changes to build.gradle (version, changelog, release channel)
 - commit, and push
