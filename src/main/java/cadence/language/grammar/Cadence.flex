@@ -74,244 +74,234 @@ IdentifierCharacter = [_A-Za-z\R]*
 %%
 
 <YYINITIAL> {
-  "access"                       { yybegin(ACCESS); return CadenceTypes.KEYWORD; }
-  "fun"                          { yybegin(FUNCTION_NAME); return CadenceTypes.KEYWORD; } //TODO support function calls
-
-
-// Control
-  "if"                           { return CadenceTypes.KEYWORD; }
-  "else"                         { return CadenceTypes.KEYWORD; }
-  "switch"                       { return CadenceTypes.KEYWORD; }
-  "case"                         { return CadenceTypes.KEYWORD; }
-   "default"                     { return CadenceTypes.KEYWORD; }
-
-// Control transfer
-  "break"                        { return CadenceTypes.KEYWORD; }
-  "continue"                     { return CadenceTypes.KEYWORD; }
-  "return"                       { return CadenceTypes.KEYWORD; }
-
-// Loop
-  "while"                        { return CadenceTypes.KEYWORD; }
-  "for"                          { return CadenceTypes.KEYWORD; }
-  "in"                           { return CadenceTypes.KEYWORD; }
-
-// Imports
-  "import"                       { return CadenceTypes.KEYWORD; }
-  "from"                         { return CadenceTypes.KEYWORD; }
-
-   "Never"                       { return CadenceTypes.KEYWORD; }
-// Variable declaration
-  "let"                          { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
-  "var"                          { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
-
-
-// Function
-  "return"                       { return CadenceTypes.KEYWORD; }
-  "pre"                          { return CadenceTypes.KEYWORD; }
-  "post"                         { return CadenceTypes.KEYWORD; }
-  "execute"                      { return CadenceTypes.KEYWORD; }
-  "prepare"                      { return CadenceTypes.KEYWORD; }
-
-// Composite types
-  "create"                       { return CadenceTypes.KEYWORD; }
-  "destroy"                      { return CadenceTypes.KEYWORD; }
-  "init"                         { return CadenceTypes.KEYWORD; }
-  "synthetic"                    { return CadenceTypes.KEYWORD; }
-  "self"                         { return CadenceTypes.KEYWORD; }
-  "get"                          { return CadenceTypes.KEYWORD; }
-  "set"                          { return CadenceTypes.KEYWORD; }
-
-// events
-  "emit"                         { yybegin(FUNCTION_NAME); return CadenceTypes.KEYWORD; }
-
-// Access
-  "priv"                         { return CadenceTypes.KEYWORD; }
-  "pub"                          { return CadenceTypes.KEYWORD; }
-
+  "access"                         { yybegin(ACCESS); return CadenceTypes.KEYWORD; }
+  "fun"                            { yybegin(FUNCTION_NAME); return CadenceTypes.KEYWORD; }
+//TODO support function calls
 
 
 // Types
-  "Void"                         { return CadenceTypes.TYPE; }
-  "Bool"                         { return CadenceTypes.TYPE; }
+  "Void"                           { return CadenceTypes.TYPE; }
 
-  "Int8"                         { return CadenceTypes.TYPE; }
-  "Int16"                        { return CadenceTypes.TYPE; }
-  "Int32"                        { return CadenceTypes.TYPE; }
-  "Int64"                        { return CadenceTypes.TYPE; }
-  "Int128"                       { return CadenceTypes.TYPE; }
-  "Int256"                       { return CadenceTypes.TYPE; }
+  "Bool"                           { return CadenceTypes.TYPE; }
+  "String"                         { return CadenceTypes.TYPE; }
+  "Character"                      { return CadenceTypes.TYPE; }
 
-  "UInt8"                        { return CadenceTypes.TYPE; }
-  "UInt16"                       { return CadenceTypes.TYPE; }
-  "UInt32"                       { return CadenceTypes.TYPE; }
-  "UInt64"                       { return CadenceTypes.TYPE; }
-  "UInt128"                      { return CadenceTypes.TYPE; }
-  "UInt256"                      { return CadenceTypes.TYPE; }
+  "Int8"                           { return CadenceTypes.TYPE; }
+  "Int16"                          { return CadenceTypes.TYPE; }
+  "Int32"                          { return CadenceTypes.TYPE; }
+  "Int64"                          { return CadenceTypes.TYPE; }
+  "Int128"                         { return CadenceTypes.TYPE; }
+  "Int256"                         { return CadenceTypes.TYPE; }
 
-  "Word8"                        { return CadenceTypes.TYPE; }
-  "Word16"                       { return CadenceTypes.TYPE; }
-  "Word32"                       { return CadenceTypes.TYPE; }
-  "Word64"                       { return CadenceTypes.TYPE; }
+  "UInt8"                          { return CadenceTypes.TYPE; }
+  "UInt16"                         { return CadenceTypes.TYPE; }
+  "UInt32"                         { return CadenceTypes.TYPE; }
+  "UInt64"                         { return CadenceTypes.TYPE; }
+  "UInt128"                        { return CadenceTypes.TYPE; }
+  "UInt256"                        { return CadenceTypes.TYPE; }
 
-  "Fix64"                        { return CadenceTypes.TYPE; }
-  "UFix64"                       { return CadenceTypes.TYPE; }
+  "Word8"                          { return CadenceTypes.TYPE; }
+  "Word16"                         { return CadenceTypes.TYPE; }
+  "Word32"                         { return CadenceTypes.TYPE; }
+  "Word64"                         { return CadenceTypes.TYPE; }
 
-  "contract"                     { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
-  "account"                      { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
-  "all"                          { return CadenceTypes.KEYWORD; }
-
-   "event"                       { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
-   "transaction"                 { return CadenceTypes.KEYWORD; }
-
-   "AnyStruct"                   { return CadenceTypes.KEYWORD; }
-   "AnyResource"                 { return CadenceTypes.KEYWORD; }
-   "struct"                      { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
-   "resource"                    { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
-   "interface"                   { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
-
-   "Address"                     { return CadenceTypes.TYPE; }
-   "PublicAccount"               { return CadenceTypes.TYPE; }
-   "AuthAccount"                 { return CadenceTypes.TYPE; }
-
-
-
-  "String"                       { return CadenceTypes.KEYWORD; }
-  "Character"                    { return CadenceTypes.KEYWORD; }
-
-  "enum"                         { return CadenceTypes.KEYWORD; }
+  "Fix64"                          { return CadenceTypes.TYPE; }
+  "UFix64"                         { return CadenceTypes.TYPE; }
 
   /* boolean literals */
-  "true"                         { return CadenceTypes.KEYWORD;  }
-  "false"                        { return CadenceTypes.KEYWORD;  }
+  "true"                           { return CadenceTypes.KEYWORD;  }
+  "false"                          { return CadenceTypes.KEYWORD;  }
 
   /* nil literal */
-  "nil"                          { return CadenceTypes.KEYWORD;  }
+  "nil"                            { return CadenceTypes.KEYWORD;  }
 
+// Control
+  "if"                             { return CadenceTypes.KEYWORD; }
+  "else"                           { return CadenceTypes.KEYWORD; }
+  "switch"                         { return CadenceTypes.KEYWORD; }
+  "case"                           { return CadenceTypes.KEYWORD; }
+   "default"                       { return CadenceTypes.KEYWORD; }
+
+// Control transfer
+  "break"                          { return CadenceTypes.KEYWORD; }
+  "continue"                       { return CadenceTypes.KEYWORD; }
+  "return"                         { return CadenceTypes.KEYWORD; }
+
+// Loop
+  "while"                          { return CadenceTypes.KEYWORD; }
+  "for"                            { return CadenceTypes.KEYWORD; }
+  "in"                             { return CadenceTypes.KEYWORD; }
+
+// Imports
+  "import"                         { return CadenceTypes.KEYWORD; }
+  "from"                           { return CadenceTypes.KEYWORD; }
+
+  "Never"                          { return CadenceTypes.KEYWORD; }
+
+// Variable declaration
+  "let"                            { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
+  "var"                            { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
+
+// Function
+  "return"                         { return CadenceTypes.KEYWORD; }
+  "pre"                            { return CadenceTypes.KEYWORD; }
+  "post"                           { return CadenceTypes.KEYWORD; }
+  "execute"                        { return CadenceTypes.KEYWORD; }
+  "prepare"                        { return CadenceTypes.KEYWORD; }
+
+// Composite types
+  "create"                         { return CadenceTypes.KEYWORD; }
+  "destroy"                        { return CadenceTypes.KEYWORD; }
+  "init"                           { return CadenceTypes.KEYWORD; }
+  "synthetic"                      { return CadenceTypes.KEYWORD; }
+  "self"                           { return CadenceTypes.KEYWORD; }
+  "get"                            { return CadenceTypes.KEYWORD; }
+  "set"                            { return CadenceTypes.KEYWORD; }
+
+// events
+  "emit"                           { yybegin(FUNCTION_NAME); return CadenceTypes.KEYWORD; }
+   "event"                         { yybegin(DEFINITION);    return CadenceTypes.KEYWORD; }
+
+// Access
+  "priv"                           { return CadenceTypes.KEYWORD; }
+  "pub"                            { return CadenceTypes.KEYWORD; }
+
+  "contract"                       { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
+  "account"                        { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
+  "all"                            { return CadenceTypes.KEYWORD; }
+
+   "transaction"                   { return CadenceTypes.KEYWORD; }
+
+   "AnyStruct"                     { return CadenceTypes.KEYWORD; }
+   "AnyResource"                   { return CadenceTypes.KEYWORD; }
+   "struct"                        { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
+   "resource"                      { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
+   "interface"                     { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
+
+   "Address"                       { return CadenceTypes.TYPE; }
+   "PublicAccount"                 { return CadenceTypes.TYPE; }
+   "AuthAccount"                   { return CadenceTypes.TYPE; }
+
+  "enum"                           { return CadenceTypes.KEYWORD; }
 
   /* separators */
-  ";"                            { return CadenceTypes.SEPARATOR; }
-  "("                            { return CadenceTypes.SEPARATOR; }
-  ")"                            { return CadenceTypes.SEPARATOR; }
-  "{"                            { return CadenceTypes.SEPARATOR; }
-  "}"                            { return CadenceTypes.SEPARATOR; }
-  "["                            { return CadenceTypes.SEPARATOR; }
-  "]"                            { return CadenceTypes.SEPARATOR; }
-  ","                            { return CadenceTypes.SEPARATOR; }
-  "."                            { return CadenceTypes.SEPARATOR; }
+  ";"                              { return CadenceTypes.SEPARATOR; }
+  "("                              { return CadenceTypes.SEPARATOR; }
+  ")"                              { return CadenceTypes.SEPARATOR; }
+  "{"                              { return CadenceTypes.SEPARATOR; }
+  "}"                              { return CadenceTypes.SEPARATOR; }
+  "["                              { return CadenceTypes.SEPARATOR; }
+  "]"                              { return CadenceTypes.SEPARATOR; }
+  ","                              { return CadenceTypes.SEPARATOR; }
+  "."                              { return CadenceTypes.SEPARATOR; }
 
   /* operators */
-  "@"                           { return CadenceTypes.OPERATOR; }
-  "??"                           { return CadenceTypes.OPERATOR; }
-  "<-!"                          { return CadenceTypes.OPERATOR; }
-  "<-"                          { return CadenceTypes.OPERATOR; }
-  "as?"                          { return CadenceTypes.OPERATOR; }
-  "="                            { return CadenceTypes.OPERATOR; }
-  "<->"                          { return CadenceTypes.OPERATOR; }
+  "@"                              { return CadenceTypes.OPERATOR; }
+  "??"                             { return CadenceTypes.OPERATOR; }
+  "<-!"                            { return CadenceTypes.OPERATOR; }
+  "<-"                             { return CadenceTypes.OPERATOR; }
+  "as?"                            { return CadenceTypes.OPERATOR; }
+  "="                              { return CadenceTypes.OPERATOR; }
+  "<->"                            { return CadenceTypes.OPERATOR; }
 
-  "+"                            { return CadenceTypes.OPERATOR; }
-  "-"                            { return CadenceTypes.OPERATOR; }
-  "*"                            { return CadenceTypes.OPERATOR; }
-  "/"                            { return CadenceTypes.OPERATOR; }
-  "%"                            { return CadenceTypes.OPERATOR; }
-  "!"                            { return CadenceTypes.OPERATOR; }
+  "+"                              { return CadenceTypes.OPERATOR; }
+  "-"                              { return CadenceTypes.OPERATOR; }
+  "*"                              { return CadenceTypes.OPERATOR; }
+  "/"                              { return CadenceTypes.OPERATOR; }
+  "%"                              { return CadenceTypes.OPERATOR; }
+  "!"                              { return CadenceTypes.OPERATOR; }
 
-  "&&"                           { return CadenceTypes.OPERATOR; }
-  "||"                           { return CadenceTypes.OPERATOR; }
+  "&&"                             { return CadenceTypes.OPERATOR; }
+  "||"                             { return CadenceTypes.OPERATOR; }
 
-  ">"                            { return CadenceTypes.OPERATOR; }
-  "<"                            { return CadenceTypes.OPERATOR; }
-  "=="                           { return CadenceTypes.OPERATOR; }
-  "<="                           { return CadenceTypes.OPERATOR; }
-  ">="                           { return CadenceTypes.OPERATOR; }
-  "!="                           { return CadenceTypes.OPERATOR; }
+  ">"                              { return CadenceTypes.OPERATOR; }
+  "<"                              { return CadenceTypes.OPERATOR; }
+  "=="                             { return CadenceTypes.OPERATOR; }
+  "<="                             { return CadenceTypes.OPERATOR; }
+  ">="                             { return CadenceTypes.OPERATOR; }
+  "!="                             { return CadenceTypes.OPERATOR; }
 
-  "?"                            { return CadenceTypes.OPERATOR; }
-  ":"                            { return CadenceTypes.OPERATOR; }
+  "?"                              { return CadenceTypes.OPERATOR; }
+  ":"                              { return CadenceTypes.OPERATOR; }
 
-  "<<"                           { return CadenceTypes.OPERATOR; }
-  ">>"                           { return CadenceTypes.OPERATOR; }
-  "&"                            { return CadenceTypes.OPERATOR; }
-  "|"                            { return CadenceTypes.OPERATOR; }
-  "^"                            { return CadenceTypes.OPERATOR; }
+  "<<"                             { return CadenceTypes.OPERATOR; }
+  ">>"                             { return CadenceTypes.OPERATOR; }
+  "&"                              { return CadenceTypes.OPERATOR; }
+  "|"                              { return CadenceTypes.OPERATOR; }
+  "^"                              { return CadenceTypes.OPERATOR; }
 
   /* string literal */
-  \"                             { yybegin(STRING); }
+  \"                               { yybegin(STRING); }
 
   /* numeric literals */
-  {HexIntegerLiteral}            { return CadenceTypes.NUMERIC_VALUE; }
-  {OctIntegerLiteral}            { return CadenceTypes.NUMERIC_VALUE; }
-  {BinIntegerLiteral}            { return CadenceTypes.NUMERIC_VALUE; }
-  {FixPointLiteral}              { return CadenceTypes.NUMERIC_VALUE; }
-  {DecIntegerLiteral}            { return CadenceTypes.NUMERIC_VALUE; }
+  {HexIntegerLiteral}              { return CadenceTypes.NUMERIC_VALUE; }
+  {OctIntegerLiteral}              { return CadenceTypes.NUMERIC_VALUE; }
+  {BinIntegerLiteral}              { return CadenceTypes.NUMERIC_VALUE; }
+  {FixPointLiteral}                { return CadenceTypes.NUMERIC_VALUE; }
+  {DecIntegerLiteral}              { return CadenceTypes.NUMERIC_VALUE; }
 
   /* comments */
-  {DocumentationComment}         { return CadenceTypes.DOCUMENTATION_COMMENT;}
-  {SimpleComment}                { return CadenceTypes.SIMPLE_COMMENT; }
+  {DocumentationComment}           { return CadenceTypes.DOCUMENTATION_COMMENT;}
+  {SimpleComment}                  { return CadenceTypes.SIMPLE_COMMENT; }
 
-//  /* whitespace */
-  {WhiteSpace}                   { return CadenceTypes.SEPARATOR; }
-//
-//  /* identifiers */
-  {Identifier}                   { return CadenceTypes.SEPARATOR; }
+  /* whitespace */
+  {WhiteSpace}                     { return CadenceTypes.SEPARATOR; }
+
+  /* identifiers */
+  {Identifier}                     { return CadenceTypes.SEPARATOR; }
 }
 
 <STRING> {
-  \"                             { yybegin(YYINITIAL); return CadenceTypes.STRING_VALUE; }
+  \"                               { yybegin(YYINITIAL); return CadenceTypes.STRING_VALUE; }
 
-   \\n                            { return CadenceTypes.ESCAPE_SEQUENCE;}
+   \\n                             { return CadenceTypes.ESCAPE_SEQUENCE;}
   (\\0|\\\\|\\t|\\n|\\r|\\\"|\\\') { return CadenceTypes.ESCAPE_SEQUENCE;}
   {UnicodeCharacter}               { return CadenceTypes.ESCAPE_SEQUENCE;}
 
-  {StringCharacter}+             { return CadenceTypes.STRING_VALUE; }
-
+  {StringCharacter}+               { return CadenceTypes.STRING_VALUE; }
   /* error cases */
-  {LineTerminator}               { return TokenType.BAD_CHARACTER; }
+  {LineTerminator}                 { return TokenType.BAD_CHARACTER; }
 }
 
 <DEFINITION> {
-{WhiteSpaceOnly}                           {return CadenceTypes.SEPARATOR;}
-  {Identifier}                { yybegin(YYINITIAL); return CadenceTypes.DEFINITION; }
-
+  {WhiteSpaceOnly}                 {return CadenceTypes.SEPARATOR;}
+  {Identifier}                     { yybegin(YYINITIAL); return CadenceTypes.DEFINITION; }
 
   /* error cases */
- // ^({Identifier}|\R)                           { return TokenType.BAD_CHARACTER; }
-  {LineTerminator}               { return TokenType.BAD_CHARACTER; }
+  {LineTerminator}                 { return TokenType.BAD_CHARACTER; }
 }
 
 <FUNCTION_NAME> {
- {WhiteSpaceOnly}                    {return CadenceTypes.SEPARATOR;}
-  {FunctionIdentifier}               { return CadenceTypes.FUNCTION_NAME; }
-  \(                              { yybegin(FUNCTION_PARAMS); return CadenceTypes.SEPARATOR;}
-  \)                                  { yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
+ {WhiteSpaceOnly}                  { return CadenceTypes.SEPARATOR;}
+  {FunctionIdentifier}             { return CadenceTypes.FUNCTION_NAME; }
+  \(                               { yybegin(FUNCTION_PARAMS); return CadenceTypes.SEPARATOR;}
+  \)                               { yybegin(YYINITIAL);       return CadenceTypes.SEPARATOR;}
 
   /* error cases */
- // ^({Identifier}|\R)            { return TokenType.BAD_CHARACTER; }
-  {LineTerminator}               { return TokenType.BAD_CHARACTER; }
+  {LineTerminator}                 { return TokenType.BAD_CHARACTER; }
 }
 <FUNCTION_PARAMS> {
- ,                                {return CadenceTypes.SEPARATOR;}
- {WhiteSpaceOnly}                    {return CadenceTypes.SEPARATOR;}
-  @                                 {return CadenceTypes.OPERATOR;}
-  {ParamIdentifier}               { return CadenceTypes.FUNCTION_PARAMETER; }
-  {TypeIdentifier}                    { return CadenceTypes.TYPE; }
-  \)                                  { yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
+  ,                                { return CadenceTypes.SEPARATOR;}
+  {WhiteSpaceOnly}                 { return CadenceTypes.SEPARATOR;}
+  @                                { return CadenceTypes.OPERATOR;}
+  {ParamIdentifier}                { return CadenceTypes.FUNCTION_PARAMETER; }
+  {TypeIdentifier}                 { return CadenceTypes.TYPE; }
+  \)                               { yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
 
   /* error cases */
- // ^({Identifier}|\R)                           { return TokenType.BAD_CHARACTER; }
-  {LineTerminator}               { return TokenType.BAD_CHARACTER; }
+  {LineTerminator}                 { return TokenType.BAD_CHARACTER; }
 }
 
+// Need separate state for access to correctly handle cases like access(contract), where contract is also keyword
 <ACCESS> {
-{WhiteSpaceOnly}                 {return CadenceTypes.SEPARATOR;}
-{AccessIdentifier}               {return CadenceTypes.DEFINITION; }
-\(                               {return CadenceTypes.SEPARATOR;}
-\)                                {yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
+  {WhiteSpaceOnly}                 {return CadenceTypes.SEPARATOR;}
+  {AccessIdentifier}               {return CadenceTypes.DEFINITION; }
+  \(                               {return CadenceTypes.SEPARATOR;}
+  \)                               {yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
 
   /* error cases */
- // ^({Identifier}|\R)                           { return TokenType.BAD_CHARACTER; }
-  {LineTerminator}               { return TokenType.BAD_CHARACTER; }
+  {LineTerminator}                 { return TokenType.BAD_CHARACTER; }
 }
 
 /* error fallback */
-[^]                              { return TokenType.BAD_CHARACTER; }
-//<<EOF>>                          { return TokenType.BAD_CHARACTER; }
+[^]                                { return TokenType.BAD_CHARACTER; }
