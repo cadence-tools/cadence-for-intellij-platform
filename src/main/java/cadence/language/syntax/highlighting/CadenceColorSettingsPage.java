@@ -54,6 +54,7 @@ public class CadenceColorSettingsPage implements ColorSettingsPage {
             " comments */\n" +
             "let mytext: String = \"test string escape \\n or escape \\u{0009} unicode\"\n" +
             "pub fun mytestfun(amount: Int32, addresses: @Address){\n" +
+            " var amount: Int16;\n" +
             " amount = 525;\n" +
             " return amount; }\n";
     }
