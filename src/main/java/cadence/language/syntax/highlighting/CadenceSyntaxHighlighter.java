@@ -23,6 +23,8 @@ public class CadenceSyntaxHighlighter extends SyntaxHighlighterBase {
         createTextAttributesKey("CADENCE_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
     public static final TextAttributesKey STRING_VALUE =
         createTextAttributesKey("CADENCE_STRING_VALUE", DefaultLanguageHighlighterColors.STRING);
+    public static final TextAttributesKey STRING_ESCAPE_SEQUENCE =
+        createTextAttributesKey("CADENCE_STRING_ESCAPE_SEQUENCE", DefaultLanguageHighlighterColors.VALID_STRING_ESCAPE);
     public static final TextAttributesKey NUMERIC_VALUE =
         createTextAttributesKey("CADENCE_NUMERIC_VALUE", DefaultLanguageHighlighterColors.NUMBER);
     public static final TextAttributesKey DEFINITION =
@@ -50,6 +52,7 @@ public class CadenceSyntaxHighlighter extends SyntaxHighlighterBase {
     private static final TextAttributesKey[] OPEPARATOR_KEYS = new TextAttributesKey[]{OPERATOR};
     private static final TextAttributesKey[] KEY_KEYS = new TextAttributesKey[]{KEYWORD};
     private static final TextAttributesKey[] STRING_VALUE_KEYS = new TextAttributesKey[]{STRING_VALUE};
+    private static final TextAttributesKey[] STRING_ESCAPE_SEQUENCE_KEYS = new TextAttributesKey[]{STRING_ESCAPE_SEQUENCE};
     private static final TextAttributesKey[] NUMERIC_VALUE_KEYS = new TextAttributesKey[]{NUMERIC_VALUE};
     private static final TextAttributesKey[] DEFINITION_KEYS = new TextAttributesKey[]{DEFINITION};
     private static final TextAttributesKey[] FUNCTION_NAME_KEYS = new TextAttributesKey[]{FUNCTION_NAME};
@@ -81,6 +84,8 @@ public class CadenceSyntaxHighlighter extends SyntaxHighlighterBase {
             return KEY_KEYS;
         } else if (tokenType.equals(CadenceTypes.STRING_VALUE)) {
             return STRING_VALUE_KEYS;
+        } else if (tokenType.equals(CadenceTypes.STRING_ESCAPE_SEQUENCE)) {
+            return STRING_ESCAPE_SEQUENCE_KEYS;
         } else if (tokenType.equals(CadenceTypes.NUMERIC_VALUE)) {
             return NUMERIC_VALUE_KEYS;
         } else if (tokenType.equals(CadenceTypes.DEFINITION)) {

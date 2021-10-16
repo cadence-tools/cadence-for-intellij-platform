@@ -17,8 +17,9 @@ public class CadenceColorSettingsPage implements ColorSettingsPage {
     private static final AttributesDescriptor[] DESCRIPTORS = new AttributesDescriptor[]{
         new AttributesDescriptor("Separator", CadenceSyntaxHighlighter.SEPARATOR),
         new AttributesDescriptor("Operator", CadenceSyntaxHighlighter.OPERATOR),
-        new AttributesDescriptor("Key", CadenceSyntaxHighlighter.KEYWORD),
+        new AttributesDescriptor("Keyword", CadenceSyntaxHighlighter.KEYWORD),
         new AttributesDescriptor("String", CadenceSyntaxHighlighter.STRING_VALUE),
+        new AttributesDescriptor("String escape sequence", CadenceSyntaxHighlighter.STRING_ESCAPE_SEQUENCE),
         new AttributesDescriptor("Number", CadenceSyntaxHighlighter.NUMERIC_VALUE),
         new AttributesDescriptor("Definition", CadenceSyntaxHighlighter.DEFINITION),
         new AttributesDescriptor("Function Name", CadenceSyntaxHighlighter.FUNCTION_NAME),

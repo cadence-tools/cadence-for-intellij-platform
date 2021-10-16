@@ -254,9 +254,9 @@ IdentifierCharacter = [_A-Za-z\R]*
 <STRING> {
   \"                               { yybegin(YYINITIAL); return CadenceTypes.STRING_VALUE; }
 
-   \\n                             { return CadenceTypes.ESCAPE_SEQUENCE;}
-  (\\0|\\\\|\\t|\\n|\\r|\\\"|\\\') { return CadenceTypes.ESCAPE_SEQUENCE;}
-  {UnicodeCharacter}               { return CadenceTypes.ESCAPE_SEQUENCE;}
+   \\n                             { return CadenceTypes.STRING_ESCAPE_SEQUENCE;}
+  (\\0|\\\\|\\t|\\n|\\r|\\\"|\\\') { return CadenceTypes.STRING_ESCAPE_SEQUENCE;}
+  {UnicodeCharacter}               { return CadenceTypes.STRING_ESCAPE_SEQUENCE;}
 
   {StringCharacter}+               { return CadenceTypes.STRING_VALUE; }
   /* error cases */
