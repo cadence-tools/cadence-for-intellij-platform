@@ -40,7 +40,7 @@ Identifier = {SimpleIdentifier}\R*
 FunctionIdentifier = {SimpleIdentifier}
 ParamIdentifier = {SimpleIdentifier}:
 TypeIdentifier = {SimpleIdentifier}
-AccessIdentifier = {SimpleIdentifier}\)
+AccessIdentifier = {SimpleIdentifier}
 
 SimpleIdentifier={NameFirstCharacter}{NameLegalCharacters}
 
@@ -294,10 +294,10 @@ IdentifierCharacter = [_A-Za-z\R]*
 
 // Need separate state for access to correctly handle cases like access(contract), where contract is also keyword
 <ACCESS> {
+  "("                               {return CadenceTypes.SEPARATOR;}
+  ")"                               {yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
   {WhiteSpaceOnly}                 {return CadenceTypes.SEPARATOR;}
-  {AccessIdentifier}               {return CadenceTypes.DEFINITION; }
-  \(                               {return CadenceTypes.SEPARATOR;}
-  \)                               {yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
+  {AccessIdentifier}               {return CadenceTypes.DEFINITION;}
 
   /* error cases */
   {LineTerminator}                 { return TokenType.BAD_CHARACTER; }
