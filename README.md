@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/cadence-tools/cadence-for-intellij-platform">
-    <img src="images/logo.png" alt="Flow Logo" width="80" height="80">
+    <img src="images/flow-logo.png" alt="Flow Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Flow - Cadence Support for Intellij Platform</h3>
