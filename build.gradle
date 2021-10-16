@@ -25,6 +25,8 @@ patchPluginXml {
               <li>Highlight variable, resources and contracts</li>
               <li>Highlight events, structs and interfaces</li>
               <li>Highlight function names, parameters and their types</li>
+              <li>Fix numbers highlighting</li>
+              <li>General improvements</li>
          </ul> 
       """
 }
