@@ -248,7 +248,7 @@ IdentifierCharacter = [_A-Za-z\R]*
   {WhiteSpace}                     { return CadenceTypes.SEPARATOR; }
 
   /* identifiers */
-  {Identifier}                     { return CadenceTypes.SEPARATOR; }
+  {Identifier}                     { return CadenceTypes.IDENTIFIER; }
 }
 
 <STRING> {
