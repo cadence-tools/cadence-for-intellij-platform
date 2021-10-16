@@ -1,45 +1,123 @@
-# cadence-for-intellij-platform
-Cadence language support for intellij platform IDEs
+<div align="center">
+  <a href="https://github.com/cadence-tools/cadence-for-intellij-platform">
+    <img src="images/logo.png" alt="Flow Logo" width="80" height="80">
+  </a>
 
-# Installation Guide
-- The plugin can be found here: https://plugins.jetbrains.com/plugin/17764-cadence
-- Alternatively, you can find it through the Jetbrains Marketplace, if you have added the <alpha> repository channel.
+<h3 align="center">Flow - Cadence Support for Intellij Platform</h3>
+
+  <p align="center">
+    Support for Cadence, the resource-oriented smart contract language of Flow, in Intellij Platform IDEs. 
+    <br />
+    <a href="https://plugins.jetbrains.com/plugin/17764-cadence"><strong>Get the plugin</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/cadence-tools/cadence-for-intellij-platform/issues">Report a Problem / Request a Feature</a>
+  </p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+
+# About the Project
+
+![Usage Screenshot](images/plugin-screenshot.png/?raw=true)
+- Cadence language support for intellij platform IDEs
+- https://plugins.jetbrains.com/plugin/17764-cadence
+
+# Installation
+- You can download the plugin by searching the marketplace in your Intellij Platform IDE
+- Alternative you can get it from the [Jetbrains Marketplace](https://plugins.jetbrains.com/plugin/17764-cadence)
+
+# Usage
+- The plugin will be immediately associated with any `.cdc` files and provide syntax highlighting.
+- It will follow the different themes / color schemes you choose from your IDE
+- You can customize the colors by going to `Settings` -> `Editor` -> `Color Scheme` -> `Cadence`
+
+# Roadmap
+- Refine syntax highlighting
+- Add support for Language Server Protocol
 
 # Compatibility
-- All Intellij Platform products, from version 2021.2 and up
+All Intellij Platform products, from version 2021.2 and up:
+- IntelliJ IDEA Ultimate
+- IntelliJ IDEA Community
+- IntelliJ IDEA Educational
+- PyCharm Professional
+- PyCharm Community
+- PyCharm Educational
+- GoLand
+- RubyMine
+- CLion
+- PhpStorm
+- WebStorm
+- Rider
+- Code With Me Guest
+- Android Studio
+- DataSpell
+- DataGrip
+- JetBrains Gateway
+- MPS
+- AppCode
 
-# Building the project
+# Contributing
+- Everyone is welcome to contribute, through issues reporting or pull requests
+- Feel free to open an issue before you start working on it, to avoid duplicate work
+
+## Building the project
 - Open project with Intellij
 - From project structure, set the project SDK to a JDK 11, and the language level to 11
 - From project structure -> modules -> main, click the edit on the "gen" folder under sources and check the checkbox to mark it as generated
+- Go to `Cadence.bnf` and from the context menu `Generate Parser Code`
+- Go to `Cadence.flex` and from the context menu `Run JFlex Generator` 
 - Build the project (run the gradle build task)
 - Run the gradle task runide
-- On the new IDE that runs, if you open a `.cdc` file you should see the flow icon and some syntax highlighting
+- On the new IDE that runs, if you open a `.cdc` file you should see the plugin working
 - If you make changes on the code, generate any sources needed, and run the runide again
-- Sometimes it's good idea to actually delete the `gen` folder and rerun the generations (first .bnf, then .flex)
+- If after changes you see "strange" results, it's a good idea to actually delete the `gen` folder and rerun the generations
 
-# Making changes on the language recognition
-- One task is to properly use the grammar from vscode plugin (view useful links) to provide the syntax highlighting
-- This is done by changing the following 2 files
+## Making changes on the language recognition
 
-## Cadence.bnf
+### Cadence.bnf
 - Declares the high level Token types
 - All declared types will be available as return types at Cadence.flex
-- After changing you must generate parser code (control+shift+g) .It's good idea to also first delete the `gen` folder
+- After changing you must generate parser code (control+shift+g)
+- It is good idea to also first delete the `gen` folder
 
-
-## Cadence.flex
+### Cadence.flex
 - Used to define the regexes that recognise the tokens
 - Generates the Lexer using JFlex
 - After changing you must Run JFlex generator (control+shift+g)
 - First rule that matches wins
 - You can have states, in which you declare the rules that apply only there
-- 
 
-# Making changes to the highlighting
+## Making changes to the highlighting
 Once a token is being recognised in the PSI structure, to add highlighting for it, you need to update:
-- `CadenceSyntaxHighlighter`
-- `CadenceColorSettingsPage`
+- `CadenceSyntaxHighlighter` for the actual highlighting
+- `CadenceColorSettingsPage` to add new tokens to the Color Scheme page of the IDE
 
 # Making a release
 - Ensure everything is ready
@@ -52,4 +130,3 @@ Once a token is being recognised in the PSI structure, to add highlighting for i
 - Go to plugins.jetbrains.com  and upload new version
 - Wait for approval
 - Test that it works
-
