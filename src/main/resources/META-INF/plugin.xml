@@ -4,7 +4,7 @@
     <vendor email="cadence.tools@gmail.com" url="https://github.com/cadence-tools/cadence-for-intellij-platform">Cadence Tools</vendor>
 
     <description><![CDATA[
-    Support for <em><a href="https://docs.onflow.org/cadence/language/">Cadence</a></em> language, the language of FLOW.
+    Support for <em><a href="https://docs.onflow.org/cadence/language/">Cadence</a></em>, the resource-oriented smart contract language of Flow.
     This plugin provides syntax highlighting for Cadence (.cdc) files.
     ]]></description>
     <change-notes>
