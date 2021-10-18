@@ -36,9 +36,10 @@
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
       <ul>
-        <li><a href="#installation">Installation</a></li>
-        <li><a href="#usage">Usage</a></li>
-        <li><a href="#compatibility">Compatibility</a></li>
+        <li><a href="#building-the-project">Building the project</a></li>
+        <li><a href="#making-changes-to-the-language-recognition">Making changes to the language recognition</a></li>
+        <li><a href="#making-changes-to-the-highlighting">Making changes to the highlighting</a></li>
+        <li><a href="#making-a-release-(only-for-mainteners)">Making a release (only for maintainers)</a></li>
       </ul>
 
   </ol>
@@ -103,7 +104,7 @@ All Intellij Platform products, from version 2021.2 and up:
 - If you make changes on the code, generate any sources needed, and run the runide again
 - If after changes you see "strange" results, it's a good idea to actually delete the `gen` folder and rerun the generations
 
-## Making changes on the language recognition
+## Making changes to the language recognition
 
 ### Cadence.bnf
 - Declares the high level Token types
@@ -123,7 +124,7 @@ Once a token is being recognised in the PSI structure, to add highlighting for i
 - `CadenceSyntaxHighlighter` for the actual highlighting
 - `CadenceColorSettingsPage` to add new tokens to the Color Scheme page of the IDE
 
-## Making a release (only by maintainers)
+## Making a release (only for maintainers)
 - Ensure everything is ready
 - Make any required changes to build.gradle (version, changelog, release channel)
 - commit, and push
