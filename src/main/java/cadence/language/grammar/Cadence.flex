@@ -37,14 +37,17 @@ EndOfLineComment = "//" {InputCharacter}* {LineTerminator}?
 
 /* identifiers */
 Identifier = {SimpleIdentifier}\R*
+FullIdentifier = {SimpleIdentifier}{SubIdentifier}+\R*
+SubIdentifier = \.{SimpleIdentifier}
 FunctionIdentifier = {SimpleIdentifier}
 ParamIdentifier = {SimpleIdentifier}:
-TypeIdentifier = {SimpleIdentifier}|{SimpleIdentifier}\.{SimpleIdentifier}
+TypeIdentifier = {SimpleIdentifier}|{FullIdentifier}
 AccessIdentifier = {SimpleIdentifier}
+FunctionCallIdentifier = {FullIdentifier}\(
 
-SimpleIdentifier={NameFirstCharacter}{NameLegalCharacters}
+SimpleIdentifier={NameFirstCharacter}{NameLegalCharacters}*
 
-NameLegalCharacters = [_A-Za-z0-9]*
+NameLegalCharacters = [_A-Za-z0-9]
 NameFirstCharacter = [_A-Za-z]
 
 /* integer literals */
@@ -65,69 +68,63 @@ StringCharacter = [^\r\n\"\\]
 SingleCharacter = [^\r\n\'\\]
 UnicodeCharacter = (\\u\{)({HexDigit}){1,8}(\})
 
-/* identifiers literals */
-IdentifierFirstCharacter = [_A-Za-z]
-IdentifierCharacter = [_A-Za-z\R]*
-
 %state STRING, DEFINITION, FUNCTION_NAME, TYPE, FUNCTION_PARAMS, ACCESS
 
 %%
 
 <YYINITIAL> {
+  {FullIdentifier}                 { return CadenceTypes.FULL_IDENTIFIER; }
+
   "access"                         { yybegin(ACCESS); return CadenceTypes.KEYWORD; }
   "fun"                            { yybegin(FUNCTION_NAME); return CadenceTypes.KEYWORD; }
-//TODO support function calls
-//TODO function parameter types can have '.'. Example TestFlowIDTableStaking.cdc
-//TODO account (I guess also address) should not be keyword when it has before it / after it a dot. Example TestFlowIDTableStaking.cdc
-//TODO function types are not recognised. Example TestFlowIDTableStaking.cdc
 
-// Types
-  "Void"                           { return CadenceTypes.TYPE; }
+// Typelet s
+  "Void"\R*                        { return CadenceTypes.TYPE; }
 
-  "Bool"                           { return CadenceTypes.TYPE; }
-  "String"                         { return CadenceTypes.TYPE; }
-  "Character"                      { return CadenceTypes.TYPE; }
+  "Bool"\R*                        { return CadenceTypes.TYPE; }
+  "String"\R*                      { return CadenceTypes.TYPE; }
+  "Character"\R*                   { return CadenceTypes.TYPE; }
 
-  "Int8"                           { return CadenceTypes.TYPE; }
-  "Int16"                          { return CadenceTypes.TYPE; }
-  "Int32"                          { return CadenceTypes.TYPE; }
-  "Int64"                          { return CadenceTypes.TYPE; }
-  "Int128"                         { return CadenceTypes.TYPE; }
-  "Int256"                         { return CadenceTypes.TYPE; }
+  "Int8"\R*                        { return CadenceTypes.TYPE; }
+  "Int16"\R*                       { return CadenceTypes.TYPE; }
+  "Int32"\R*                       { return CadenceTypes.TYPE; }
+  "Int64"\R*                       { return CadenceTypes.TYPE; }
+  "Int128"\R*                      { return CadenceTypes.TYPE; }
+  "Int256"\R*                      { return CadenceTypes.TYPE; }
 
-  "UInt8"                          { return CadenceTypes.TYPE; }
-  "UInt16"                         { return CadenceTypes.TYPE; }
-  "UInt32"                         { return CadenceTypes.TYPE; }
-  "UInt64"                         { return CadenceTypes.TYPE; }
-  "UInt128"                        { return CadenceTypes.TYPE; }
-  "UInt256"                        { return CadenceTypes.TYPE; }
+  "UInt8"\R*                       { return CadenceTypes.TYPE; }
+  "UInt16"\R*                      { return CadenceTypes.TYPE; }
+  "UInt32"\R*                      { return CadenceTypes.TYPE; }
+  "UInt64"\R*                      { return CadenceTypes.TYPE; }
+  "UInt128"\R*                     { return CadenceTypes.TYPE; }
+  "UInt256"\R*                     { return CadenceTypes.TYPE; }
 
-  "Word8"                          { return CadenceTypes.TYPE; }
-  "Word16"                         { return CadenceTypes.TYPE; }
-  "Word32"                         { return CadenceTypes.TYPE; }
-  "Word64"                         { return CadenceTypes.TYPE; }
+  "Word8"\R*                       { return CadenceTypes.TYPE; }
+  "Word16"\R*                      { return CadenceTypes.TYPE; }
+  "Word32"\R*                      { return CadenceTypes.TYPE; }
+  "Word64"\R*                      { return CadenceTypes.TYPE; }
 
-  "Fix64"                          { return CadenceTypes.TYPE; }
-  "UFix64"                         { return CadenceTypes.TYPE; }
+  "Fix64"\R*                       { return CadenceTypes.TYPE; }
+  "UFix64"\R*                      { return CadenceTypes.TYPE; }
 
   /* boolean literals */
-  "true"                           { return CadenceTypes.KEYWORD;  }
-  "false"                          { return CadenceTypes.KEYWORD;  }
+  "true"\R*                        { return CadenceTypes.KEYWORD;  }
+  "false"\R*                       { return CadenceTypes.KEYWORD;  }
 
   /* nil literal */
-  "nil"                            { return CadenceTypes.KEYWORD;  }
+  "nil"\R*                         { return CadenceTypes.KEYWORD;  }
 
 // Control
-  "if"                             { return CadenceTypes.KEYWORD; }
-  "else"                           { return CadenceTypes.KEYWORD; }
-  "switch"                         { return CadenceTypes.KEYWORD; }
-  "case"                           { return CadenceTypes.KEYWORD; }
-   "default"                       { return CadenceTypes.KEYWORD; }
+  "if"\R*                          { return CadenceTypes.KEYWORD; }
+  "else"\R*                        { return CadenceTypes.KEYWORD; }
+  "switch"\R*                      { return CadenceTypes.KEYWORD; }
+  "case"\R*                        { return CadenceTypes.KEYWORD; }
+   "default"\R*                    { return CadenceTypes.KEYWORD; }
 
 // Control transfer
-  "break"                          { return CadenceTypes.KEYWORD; }
-  "continue"                       { return CadenceTypes.KEYWORD; }
-  "return"                         { return CadenceTypes.KEYWORD; }
+  "break"\R*                       { return CadenceTypes.KEYWORD; }
+  "continue"\R*                    { return CadenceTypes.KEYWORD; }
+  "return"\R*                      { return CadenceTypes.KEYWORD; }
 
 // Loop
   "while"                          { return CadenceTypes.KEYWORD; }
@@ -138,14 +135,13 @@ IdentifierCharacter = [_A-Za-z\R]*
   "import"                         { return CadenceTypes.KEYWORD; }
   "from"                           { return CadenceTypes.KEYWORD; }
 
-  "Never"                          { return CadenceTypes.KEYWORD; }
+  "Never"\R*                       { return CadenceTypes.KEYWORD; }
 
 // Variable declaration
   "let"                            { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
   "var"                            { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
 
 // Function
-  "return"                         { return CadenceTypes.KEYWORD; }
   "pre"                            { return CadenceTypes.KEYWORD; }
   "post"                           { return CadenceTypes.KEYWORD; }
   "execute"                        { return CadenceTypes.KEYWORD; }
@@ -162,7 +158,7 @@ IdentifierCharacter = [_A-Za-z\R]*
 
 // events
   "emit"                           { yybegin(FUNCTION_NAME); return CadenceTypes.KEYWORD; }
-   "event"                         { yybegin(DEFINITION);    return CadenceTypes.KEYWORD; }
+  "event"                          { yybegin(DEFINITION);    return CadenceTypes.KEYWORD; }
 
 // Access
   "priv"                           { return CadenceTypes.KEYWORD; }
@@ -177,8 +173,8 @@ IdentifierCharacter = [_A-Za-z\R]*
    "AnyStruct"                     { return CadenceTypes.KEYWORD; }
    "AnyResource"                   { return CadenceTypes.KEYWORD; }
    "struct"                        { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
-   "resource"                      { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
    "interface"                     { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
+   "resource"                      { yybegin(DEFINITION); return CadenceTypes.KEYWORD; }
 
    "Address"                       { return CadenceTypes.TYPE; }
    "PublicAccount"                 { return CadenceTypes.TYPE; }
