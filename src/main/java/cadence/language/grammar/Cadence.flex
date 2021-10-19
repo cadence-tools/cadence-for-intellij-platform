@@ -39,7 +39,7 @@ EndOfLineComment = "//" {InputCharacter}* {LineTerminator}?
 Identifier = {SimpleIdentifier}\R*
 FunctionIdentifier = {SimpleIdentifier}
 ParamIdentifier = {SimpleIdentifier}:
-TypeIdentifier = {SimpleIdentifier}
+TypeIdentifier = {SimpleIdentifier}|{SimpleIdentifier}\.{SimpleIdentifier}
 AccessIdentifier = {SimpleIdentifier}
 
 SimpleIdentifier={NameFirstCharacter}{NameLegalCharacters}
@@ -69,7 +69,7 @@ UnicodeCharacter = (\\u\{)({HexDigit}){1,8}(\})
 IdentifierFirstCharacter = [_A-Za-z]
 IdentifierCharacter = [_A-Za-z\R]*
 
-%state STRING, DEFINITION, FUNCTION_NAME, FUNCTION_PARAMS, ACCESS
+%state STRING, DEFINITION, FUNCTION_NAME, TYPE, FUNCTION_PARAMS, ACCESS
 
 %%
 
@@ -279,7 +279,17 @@ IdentifierCharacter = [_A-Za-z\R]*
  {WhiteSpaceOnly}                  { return CadenceTypes.SEPARATOR;}
   {FunctionIdentifier}             { return CadenceTypes.FUNCTION_NAME; }
   \(                               { yybegin(FUNCTION_PARAMS); return CadenceTypes.SEPARATOR;}
-  \)                               { yybegin(YYINITIAL);       return CadenceTypes.SEPARATOR;}
+  \)                               { return CadenceTypes.SEPARATOR;}
+  :                                { yybegin(TYPE); return CadenceTypes.SEPARATOR;}
+  \{                               { yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
+
+  /* error cases */
+  {LineTerminator}                 { return TokenType.BAD_CHARACTER; }
+}
+<TYPE> {
+  {WhiteSpaceOnly}                 { return CadenceTypes.SEPARATOR;}
+  @                                { return CadenceTypes.OPERATOR;}
+  {TypeIdentifier}                 { yybegin(YYINITIAL); return CadenceTypes.TYPE; }
 
   /* error cases */
   {LineTerminator}                 { return TokenType.BAD_CHARACTER; }
@@ -290,6 +300,7 @@ IdentifierCharacter = [_A-Za-z\R]*
   @                                { return CadenceTypes.OPERATOR;}
   {ParamIdentifier}                { return CadenceTypes.FUNCTION_PARAMETER; }
   {TypeIdentifier}                 { return CadenceTypes.TYPE; }
+  \):                              { yybegin(TYPE); return CadenceTypes.SEPARATOR;}
   \)                               { yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
 
   /* error cases */
