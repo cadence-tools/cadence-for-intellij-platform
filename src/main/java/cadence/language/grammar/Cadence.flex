@@ -267,6 +267,8 @@ IdentifierCharacter = [_A-Za-z\R]*
 
 <DEFINITION> {
   {WhiteSpaceOnly}                 {return CadenceTypes.SEPARATOR;}
+  "interface"                      {return CadenceTypes.KEYWORD;}
+
   {Identifier}                     { yybegin(YYINITIAL); return CadenceTypes.DEFINITION; }
 
   /* error cases */
