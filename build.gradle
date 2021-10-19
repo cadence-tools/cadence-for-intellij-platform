@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'cadence-language'
-version '0.4'
+version '0.3.1'
 
 repositories {
     mavenCentral()
@@ -22,16 +22,15 @@ intellij {
 patchPluginXml {
     changeNotes = """
          <ul>
-              <li>Highlight variable, resources and contracts</li>
-              <li>Highlight events, structs and interfaces</li>
-              <li>Highlight function names, parameters and their types</li>
-              <li>Fix numbers highlighting</li>
-              <li>General improvements</li>
+              <li>Recognise function types</li>
+              <li>Fix keywords incorrectly recognised between dots</li>
+              <li>Fix "resource interface" sequence recognition</li>
+              <li>Fix README table of contents</li>
          </ul> 
       """
 }
 publishPlugin {
-    channels = ['alpha']
+    channels = ['stable']
 }
 
 signPlugin {
