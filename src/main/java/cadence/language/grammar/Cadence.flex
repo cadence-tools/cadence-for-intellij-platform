@@ -77,7 +77,9 @@ IdentifierCharacter = [_A-Za-z\R]*
   "access"                         { yybegin(ACCESS); return CadenceTypes.KEYWORD; }
   "fun"                            { yybegin(FUNCTION_NAME); return CadenceTypes.KEYWORD; }
 //TODO support function calls
-
+//TODO function parameter types can have '.'. Example TestFlowIDTableStaking.cdc
+//TODO account (I guess also address) should not be keyword when it has before it / after it a dot. Example TestFlowIDTableStaking.cdc
+//TODO function types are not recognised. Example TestFlowIDTableStaking.cdc
 
 // Types
   "Void"                           { return CadenceTypes.TYPE; }
