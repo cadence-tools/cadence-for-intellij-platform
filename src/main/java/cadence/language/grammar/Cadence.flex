@@ -41,7 +41,7 @@ FullIdentifier = {SimpleIdentifier}{SubIdentifier}+\R*
 SubIdentifier = \.{SimpleIdentifier}
 FunctionIdentifier = {SimpleIdentifier}
 ParamIdentifier = {SimpleIdentifier}:
-TypeIdentifier = {SimpleIdentifier}|{FullIdentifier}
+TypeIdentifier = {SimpleIdentifier}\?*|{FullIdentifier}\?*
 AccessIdentifier = {SimpleIdentifier}
 FunctionCallIdentifier = {FullIdentifier}\(
 
@@ -305,8 +305,8 @@ UnicodeCharacter = (\\u\{)({HexDigit}){1,8}(\})
 
 // Need separate state for access to correctly handle cases like access(contract), where contract is also keyword
 <ACCESS> {
-  "("                               {return CadenceTypes.SEPARATOR;}
-  ")"                               {yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
+  "("                              {return CadenceTypes.SEPARATOR;}
+  ")"                              {yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
   {WhiteSpaceOnly}                 {return CadenceTypes.SEPARATOR;}
   {AccessIdentifier}               {return CadenceTypes.DEFINITION;}
 

@@ -15,9 +15,9 @@
 
 cadenceFile ::= item_*
 
-private item_ ::= (KEYWORD|separator|comment|value|identifier|TYPE)
+private item_ ::= (KEYWORD|separating|comment|value|identifying|TYPE)
 
 value ::= (NUMERIC_VALUE|STRING_VALUE|STRING_ESCAPE_SEQUENCE)
 comment ::= (SIMPLE_COMMENT|DOCUMENTATION_COMMENT)
-identifier ::= (DEFINITION|FUNCTION_NAME|FUNCTION_PARAMETER|FULL_IDENTIFIER)
-separator ::= (OPERATOR)
+identifying ::= (IDENTIFIER|DEFINITION|FUNCTION_NAME|FUNCTION_PARAMETER|FULL_IDENTIFIER)
+separating ::= (OPERATOR|SEPARATOR)
