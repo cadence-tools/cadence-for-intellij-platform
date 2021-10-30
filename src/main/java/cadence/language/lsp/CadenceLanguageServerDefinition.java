@@ -25,9 +25,9 @@ public class CadenceLanguageServerDefinition extends LanguageServerDefinition {
     private static final Logger log = Logger.getInstance(CadenceLanguageServerDefinition.class);
 
     private static final String LOG_PREFIX = "LSP-LOG";
-    private static final String DEBUG_STDIN_FILE_PATH = "/home/nkotsola/workspaces/logs/cadence-lsp.stdin.log";
-    private static final String DEBUG_STDOUT_FILE_PATH = "/home/nkotsola/workspaces/logs/cadence-lsp.stdout.log";
-    private static final Boolean DEBUG_LOGGING = true;
+    private static final String DEBUG_STDIN_FILE_PATH = CadenceSettingsState.getInstance().debugLogFileStdIn;
+    private static final String DEBUG_STDOUT_FILE_PATH = CadenceSettingsState.getInstance().debugLogFileStdOut;
+    private static final Boolean DEBUG_LOGGING = CadenceSettingsState.getInstance().debugLspMessagesActive;
     protected String[] command;
     private RawCommandServerDefinition rawCommandServerDefinition = null;
     private OutputStream debugStdinStream;
@@ -116,11 +116,7 @@ public class CadenceLanguageServerDefinition extends LanguageServerDefinition {
         return ext.hashCode() + 3 * Arrays.hashCode(command);
     }
 
-    public void logDebug(String logMessage){
-        if (teeStreamConnectionProvider!=null){
-            teeStreamConnectionProvider.logDebug(logMessage);
-        }
-    }
+
     private String getResourcePath(String relativePath) {
         try {
             ClassLoader classLoader = getClass().getClassLoader();

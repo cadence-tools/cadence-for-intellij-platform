@@ -41,6 +41,9 @@ public class CadenceSettingsConfigurable implements Configurable {
         modified |= mySettingsComponent.getActiveAccountAddressText() != settings.activeAccountAddress;
         modified |= mySettingsComponent.getConfigPathText() != settings.configPath;
         modified |= mySettingsComponent.getEmulatorState() != settings.emulatorState;
+        modified |= mySettingsComponent.getDebugLogFileStdInText() != settings.debugLogFileStdIn;
+        modified |= mySettingsComponent.getDebugLogFileStdOutText() != settings.debugLogFileStdOut;
+        modified |= mySettingsComponent.isDebugLspMessagesActive() != settings.debugLspMessagesActive;
         return modified;
     }
 
@@ -51,6 +54,9 @@ public class CadenceSettingsConfigurable implements Configurable {
         settings.activeAccountAddress = mySettingsComponent.getActiveAccountAddressText();
         settings.configPath = mySettingsComponent.getConfigPathText();
         settings.emulatorState = mySettingsComponent.getEmulatorState();
+        settings.debugLogFileStdIn = mySettingsComponent.getDebugLogFileStdInText();
+        settings.debugLogFileStdOut = mySettingsComponent.getDebugLogFileStdOutText();
+        settings.debugLspMessagesActive = mySettingsComponent.isDebugLspMessagesActive();
     }
 
     @Override
@@ -60,6 +66,9 @@ public class CadenceSettingsConfigurable implements Configurable {
         mySettingsComponent.setActiveAccountAddressText(settings.activeAccountAddress);
         mySettingsComponent.setConfigPathText(settings.configPath);
         mySettingsComponent.setEmulatorState(settings.emulatorState);
+        mySettingsComponent.setDebugLogFileStdInText(settings.debugLogFileStdIn);
+        mySettingsComponent.setDebugLogFileStdOutText(settings.debugLogFileStdOut);
+        mySettingsComponent.setDebugLspMessagesActive(settings.debugLspMessagesActive);
     }
 
     @Override

@@ -6,7 +6,6 @@ import com.intellij.ui.components.JBCheckBox;
 import com.intellij.ui.components.JBLabel;
 import com.intellij.ui.components.JBTextField;
 import com.intellij.util.ui.FormBuilder;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 
@@ -27,6 +26,9 @@ public class CadenceSettingsComponent {
     private final JBTextField activeAccountAddress = new JBTextField();
     private final JBTextField configPath = new JBTextField();
     private final JComboBox<EmulatorState> emulatorState = new ComboBox<>(emulatorStates);
+    private final JBCheckBox debugLspMessagesActive = new JBCheckBox();
+    private final JBTextField debugLogFileStdIn = new JBTextField();
+    private final JBTextField debugLogFileStdOut = new JBTextField();
 
     private final JBCheckBox myIdeaUserStatus = new JBCheckBox("Do you use IntelliJ IDEA? ");
 
@@ -38,10 +40,17 @@ public class CadenceSettingsComponent {
             .addComponent(activeAccountAddress, 2)
             .addLabeledComponent(new JBLabel("Config path (path of flow.json): "), configPath, 3, false)
             .addComponent(configPath, 3)
-            .addLabeledComponent(new JBLabel("Emulator state: "), emulatorState, 4, false)
-            .addComponent(emulatorState, 4)
+            .addLabeledComponent(new JBLabel("Log Language Server Protocol Messages "), emulatorState, 4, false)
+            .addComponent(debugLspMessagesActive, 4)
+            .addLabeledComponent(new JBLabel("Log file for StdIn messages: "), emulatorState, 5, false)
+            .addComponent(debugLogFileStdIn, 5)
+            .addLabeledComponent(new JBLabel("Log file for StdOut messages: "), emulatorState, 6, false)
+            .addComponent(debugLogFileStdOut, 6)
+            .addLabeledComponent(new JBLabel("Emulator state: "), emulatorState, 7, false)
+            .addComponent(emulatorState, 7)
             .addComponentFillVertically(new JPanel(), 0)
             .getPanel();
+
     }
 
     public JPanel getPanel() {
@@ -68,6 +77,18 @@ public class CadenceSettingsComponent {
         return ((EmulatorState) emulatorState.getSelectedItem()).ordinal();
     }
 
+    public String getDebugLogFileStdInText() {
+        return debugLogFileStdIn.getText();
+    }
+
+    public String getDebugLogFileStdOutText() {
+        return debugLogFileStdOut.getText();
+    }
+
+    public boolean isDebugLspMessagesActive() {
+        return debugLspMessagesActive.isSelected();
+    }
+
     public void setActiveAccountNameText(String activeAccountNameText) {
         activeAccountName.setText(activeAccountNameText);
     }
@@ -82,6 +103,18 @@ public class CadenceSettingsComponent {
 
     public void setEmulatorState(int emulatorStateInt) {
         emulatorState.setSelectedItem(EmulatorState.values()[emulatorStateInt]);
+    }
+
+    public void setDebugLogFileStdInText(String debugLogFileStdInText) {
+        debugLogFileStdIn.setText(debugLogFileStdInText);
+    }
+
+    public void setDebugLogFileStdOutText(String debugLogFileStdOutText) {
+        debugLogFileStdOut.setText(debugLogFileStdOutText);
+    }
+
+    public void setDebugLspMessagesActive(boolean debugLspMessagesActiveValue) {
+        debugLspMessagesActive.setSelected(debugLspMessagesActiveValue);
     }
 
 }

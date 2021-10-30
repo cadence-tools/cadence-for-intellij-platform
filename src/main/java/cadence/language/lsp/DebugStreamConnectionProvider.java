@@ -1,5 +1,6 @@
 package cadence.language.lsp;
 
+    import cadence.language.settings.CadenceSettingsState;
     import com.intellij.openapi.diagnostic.Logger;
     import org.apache.commons.io.input.TeeInputStream;
     import org.bouncycastle.util.io.TeeOutputStream;
@@ -43,7 +44,6 @@ public class DebugStreamConnectionProvider implements StreamConnectionProvider {
     @Override
     public void start() throws IOException {
         realConnectionProvider.start();
-
         logDebug("DebugStreamConnectionProvider.start()");
 
         inputStream = new TeeInputStream(realConnectionProvider.getInputStream(), stdoutDebugLogStream);
