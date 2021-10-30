@@ -14,7 +14,8 @@ repositories {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-    implementation 'com.github.ballerina-platform:lsp4intellij:0.94.2'
+    implementation 'com.github.ballerina-platform:lsp4intellij:master-SNAPSHOT'
+    //cd8acce6dfc1b7b50159e81ed247d1a54c2177bf is last known commit  working, but couldn't depend on it
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
