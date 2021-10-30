@@ -25,6 +25,11 @@
                                        implementationClass="cadence.language.syntax.highlighting.CadenceSyntaxHighlighterFactory"/>
         <colorSettingsPage implementation="cadence.language.syntax.highlighting.CadenceColorSettingsPage"/>
 
+        <!-- Settings -->
+        <applicationService serviceImplementation="cadence.language.settings.CadenceSettingsState"/>
+        <applicationConfigurable parentId="tools" instance="cadence.language.settings.CadenceSettingsConfigurable"
+                                 id="cadence.language.settings.CadenceSettingsConfigurable"
+                                 displayName="Cadence Settings"/>
         <!-- LSP Support through ballerina -->
 
         <preloadingActivity implementation="cadence.language.lsp.CadenceLanguageServerPreloadingActivity"

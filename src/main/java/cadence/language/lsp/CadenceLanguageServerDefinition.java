@@ -1,5 +1,8 @@
 package cadence.language.lsp;
 
+    import cadence.language.settings.CadenceSettingsState;
+    import com.intellij.ide.plugins.PluginManager;
+    import com.intellij.ide.plugins.PluginManagerCore;
     import com.intellij.openapi.diagnostic.Logger;
     import com.intellij.util.ExceptionUtil;
     import org.wso2.lsp4intellij.client.connection.StreamConnectionProvider;
@@ -43,8 +46,7 @@ public class CadenceLanguageServerDefinition extends LanguageServerDefinition {
     /**
      * Creates new instance with the given language id which is different from the file extension.
      *
-     * @param ext         The extension
-     * @param languageIds The language server ids mapping to extension(s).
+     * @param extension         The extension
      * @param command     The command to run
      */
     @SuppressWarnings("WeakerAccess")
@@ -53,29 +55,22 @@ public class CadenceLanguageServerDefinition extends LanguageServerDefinition {
         this.command = command;
         this.languageIds = Map.of();
 
-//        String flowPath = getResourcePath(flowCliRelativePath);
-//        if (flowPath == null) {
-//            log.error(LOG_PREFIX + "Could not find " + flowCliRelativePath + " which should have been bundled in the plugin.");
-//            return;
-//        }
-//
-//        System.out.println("Flowpath:" + flowPath);
-      //  this.command = new String[]{"flow"};
         enableDebugLogging();
         rawCommandServerDefinition = new RawCommandServerDefinition(this.ext, this.command);
     }
 
-    private class InitializationOption {
-        public int emulatorState = 0;
-        public String activeAccountName = "emulator-account";
-        public String activeAccountAddress = "f8d6e0586b0a20c7";
-        public String configPath = "/home/nkotsola/workspaces/vscode-cadence/src/test/fixtures/workspace/flow.json";
+    private static class InitializationOptions {
+
+        public int emulatorState = CadenceSettingsState.getInstance().emulatorState;
+        public String activeAccountName = CadenceSettingsState.getInstance().activeAccountName;
+        public String activeAccountAddress = CadenceSettingsState.getInstance().activeAccountAddress;
+        public String configPath = CadenceSettingsState.getInstance().configPath;
+
 
     }
     @Override
     public Object getInitializationOptions(URI uri) {
-      //  return "{\"emulatorState\":0,\"activeAccountName\":\"emulator-account\",\"activeAccountAddress\":\"f8d6e0586b0a20c7\",\"configPath\":\"/home/nkotsola/workspaces/vscode-cadence/src/test/fixtures/workspace/flow.json\"}";
-        return new InitializationOption();
+        return new InitializationOptions();
     }
 
 
