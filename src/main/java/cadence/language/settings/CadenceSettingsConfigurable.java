@@ -19,7 +19,7 @@ public class CadenceSettingsConfigurable implements Configurable {
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
     public String getDisplayName() {
-        return "Cadence settings";
+        return "Cadence LSP settings";
     }
 
     @Override

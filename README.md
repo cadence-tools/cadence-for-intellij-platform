@@ -30,6 +30,10 @@
       <ul>
         <li><a href="#installation">Installation</a></li>
         <li><a href="#usage">Usage</a></li>
+          <ul>
+            <li><a href="#syntax-highlighting">Syntax Highlighting</a></li>
+            <li><a href="#language-server-protocol-support">Language Server Protocol Support</a></li>
+          </ul>
         <li><a href="#compatibility">Compatibility</a></li>
       </ul>
     </li>
@@ -39,7 +43,7 @@
         <li><a href="#building-the-project">Building the project</a></li>
         <li><a href="#making-changes-to-the-language-recognition">Making changes to the language recognition</a></li>
         <li><a href="#making-changes-to-the-highlighting">Making changes to the highlighting</a></li>
-        <li><a href="#language-server-protocol-support">Language Server Protocol Support</a></li>
+        <li><a href="#supporting-cadence-language-server-protocol">Supporting Cadence Language Server Protocol</a></li>
         <li><a href="#making-a-release-(only-for-mainteners)">Making a release (only for maintainers)</a></li>
       </ul>
 
@@ -59,9 +63,18 @@
 - Alternative you can get it from the [Jetbrains Marketplace](https://plugins.jetbrains.com/plugin/17764-cadence)
 
 ## Usage
+
+### Syntax Highlighting
 - The plugin will be immediately associated with any `.cdc` files and provide syntax highlighting.
 - It will follow the different themes / color schemes you choose from your IDE
 - You can customize the colors by going to `Settings` -> `Editor` -> `Color Scheme` -> `Cadence`
+
+### Language Server Protocol Support
+- To utilize the LSP support, you must have [flow-cli](github.com/onflow/flow-cli) installed and available on your PATH
+- You can test it by running on a terminal the command `flow cadence language-server`. (It will tell you that it does nothing when ran from a terminal)
+- You should run the flow emulator from the flow-cli before starting the plugin, with the command `flow emulator start`
+- You can configure the settings for the LSP under `Settings` -> `Tools` -> `Cadence LSP settings`
+- Note: After changing settings, a restart is required for them to take effect. This will be addressed in a future release
 
 ## Compatibility
 All Intellij Platform products, from version 2021.2 and up:
@@ -125,10 +138,10 @@ Once a token is being recognised in the PSI structure, to add highlighting for i
 - `CadenceSyntaxHighlighter` for the actual highlighting
 - `CadenceColorSettingsPage` to add new tokens to the Color Scheme page of the IDE
 
-## Language Server Protocol Support
-- Utilize the Language Protocol Server provided by Cadence
-- Allows logging input / output commands to LSP server for local debugging
-- Uses https://github.com/ballerina-platform/lsp4intellij/
+## Supporting Cadence Language Server Protocol
+- The Language Server Protocol server provided by [Cadence](https://github.com/onflow/cadence/) is utilized
+- To provide the support the library [lsp4intellij](https://github.com/ballerina-platform/lsp4intellij/) is used
+- Settings and functionality for logging input / output commands to LSP server for local debugging are available
 
 ## Making a release (only for maintainers)
 - Ensure everything is ready
