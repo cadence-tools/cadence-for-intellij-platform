@@ -1,4 +1,4 @@
-package cadence.language;
+package cadence.language.lsp;
 
 import cadence.language.lsp.CadenceLanguageServerDefinition;
 import com.intellij.openapi.application.PreloadingActivity;

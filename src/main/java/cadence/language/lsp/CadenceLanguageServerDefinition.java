@@ -1,6 +1,5 @@
 package cadence.language.lsp;
 
-    import cadence.language.DebugStreamConnectionProvider;
     import com.intellij.openapi.diagnostic.Logger;
     import com.intellij.util.ExceptionUtil;
     import org.wso2.lsp4intellij.client.connection.StreamConnectionProvider;

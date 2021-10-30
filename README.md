@@ -39,6 +39,7 @@
         <li><a href="#building-the-project">Building the project</a></li>
         <li><a href="#making-changes-to-the-language-recognition">Making changes to the language recognition</a></li>
         <li><a href="#making-changes-to-the-highlighting">Making changes to the highlighting</a></li>
+        <li><a href="#language-server-protocol-support">Language Server Protocol Support</a></li>
         <li><a href="#making-a-release-(only-for-mainteners)">Making a release (only for maintainers)</a></li>
       </ul>
 
@@ -86,7 +87,7 @@ All Intellij Platform products, from version 2021.2 and up:
 
 # Roadmap
 - Refine syntax highlighting
-- Add support for Language Server Protocol
+- Improve support for Language Server Protocol
 
 # Contributing
 - Everyone is welcome to contribute, through issues reporting or pull requests
@@ -124,19 +125,11 @@ Once a token is being recognised in the PSI structure, to add highlighting for i
 - `CadenceSyntaxHighlighter` for the actual highlighting
 - `CadenceColorSettingsPage` to add new tokens to the Color Scheme page of the IDE
 
-## LSP Support
-- Using ballerina lsp4intellij
-- Modification to log input output
-- logs: /home/nkotsola/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2021.2.2/aa03fa700ac9c82d03acad5eadd5e547b5ccc008/ideaIC-2021.2.2/bin/cadence-lsp.stdout.log
-- /home/nkotsola/.gradle/caches/modules-2/files-2.1/com.jetbrains.intellij.idea/ideaIC/2021.2.2/aa03fa700ac9c82d03acad5eadd5e547b5ccc008/ideaIC-2021.2.2/bin/cadence-lsp.stdin.log
-- installation script for flow doesn't work, need to:
-    - download version from
-    - mv whatever-name flow-version
-    - chmod +x flow-version
-    - sudo mv flow-version /usr/local/bin/
-    - chown nkotsola flow-version
-    - Update the command in the languagedefinitionserver / cadence-lsp.sh script to use it
-    
+## Language Server Protocol Support
+- Utilize the Language Protocol Server provided by Cadence
+- Allows logging input / output commands to LSP server for local debugging
+- Uses https://github.com/ballerina-platform/lsp4intellij/
+
 ## Making a release (only for maintainers)
 - Ensure everything is ready
 - Make any required changes to build.gradle (version, changelog, release channel)

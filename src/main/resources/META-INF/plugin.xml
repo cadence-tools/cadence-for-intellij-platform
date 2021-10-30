@@ -4,12 +4,12 @@
     <vendor email="cadence.tools@gmail.com" url="https://github.com/cadence-tools/cadence-for-intellij-platform">Cadence Tools</vendor>
 
     <description><![CDATA[
-    WARNING! Not fully implemented yet!
     Support for <em><a href="https://docs.onflow.org/cadence/language/">Cadence</a></em> language.
-    This plugin provides syntax highlighting for Cadence (.cdc) files.
+    This plugin provides syntax highlighting and basic language server protocol support for Cadence (.cdc) files.
+    For the language server protocol support, please ensure you have installed flow-cli, and it is available in the PATH
     ]]></description>
     <change-notes>
-        Initial insider release, with demo syntax highlight
+        Alpha release, with syntax highlighting and basic language server support
     </change-notes>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
@@ -27,8 +27,8 @@
 
         <!-- LSP Support through ballerina -->
 
-        <preloadingActivity implementation="cadence.language.CadenceLanguageServerPreloadingActivity"
-                            id="cadence.language.CadenceLanguageServerPreloadingActivity" />
+        <preloadingActivity implementation="cadence.language.lsp.CadenceLanguageServerPreloadingActivity"
+                            id="cadence.language.lsp.CadenceLanguageServerPreloadingActivity" />
         <!-- register intellijLanguageClient as a Service OR as a plugin component (see readme)... -->
         <applicationService serviceImplementation="org.wso2.lsp4intellij.IntellijLanguageClient"/>
 

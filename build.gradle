@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'cadence-language'
-version '0.3'
+version '0.4'
 
 repositories {
     mavenCentral()
@@ -24,14 +24,12 @@ intellij {
 patchPluginXml {
     changeNotes = """
          <ul>
-              <li>Highlight variable, resources and contracts</li>
-              <li>Highlight events, structs and interfaces</li>
-              <li>Highlight function names, parameters and their types</li>
+              <li>Basic Language Server Protocol support, if you have flow-cli installed</li>
          </ul> 
       """
 }
 publishPlugin {
-    channels = ['alpha']
+    channels = ['stable']
 }
 
 signPlugin {

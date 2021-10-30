@@ -1,4 +1,4 @@
-package cadence.language;
+package cadence.language.lsp;
 
     import com.intellij.openapi.diagnostic.Logger;
     import org.apache.commons.io.input.TeeInputStream;
