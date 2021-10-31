@@ -36,7 +36,7 @@ EndOfLineComment = "//" {InputCharacter}* {LineTerminator}?
 
 
 /* identifiers */
-Identifier = {SimpleIdentifier}\R*
+Identifier =  {HexPrefix}?{SimpleIdentifier}\R*
 FullIdentifier = {SimpleIdentifier}{SubIdentifier}+\R*
 SubIdentifier = \.{SimpleIdentifier}
 FunctionIdentifier = {SimpleIdentifier}
@@ -55,7 +55,8 @@ FixPointLiteral   = {DecIntegerLiteral}\.{DecIntegerLiteral}
 DecIntegerLiteral = {DecDigit}+
 DecDigit          = [0-9]
 
-HexIntegerLiteral = (0x)({OctDigit})+
+HexPrefix         = (0x)
+HexIntegerLiteral = {HexPrefix}({OctDigit})+
 HexDigit          = [0-9a-fA-F]
 
 OctIntegerLiteral = (0o)({OctDigit})+
@@ -284,7 +285,7 @@ UnicodeCharacter = (\\u\{)({HexDigit}){1,8}(\})
 }
 <TYPE> {
   {WhiteSpaceOnly}                 { return CadenceTypes.SEPARATOR;}
-  @                                { return CadenceTypes.OPERATOR;}
+  [@&\[\]\?\{\}]                   { return CadenceTypes.OPERATOR;}
   {TypeIdentifier}                 { yybegin(YYINITIAL); return CadenceTypes.TYPE; }
 
   /* error cases */
@@ -293,12 +294,12 @@ UnicodeCharacter = (\\u\{)({HexDigit}){1,8}(\})
 <FUNCTION_PARAMS> {
   ,                                { return CadenceTypes.SEPARATOR;}
   {WhiteSpaceOnly}                 { return CadenceTypes.SEPARATOR;}
-  @                                { return CadenceTypes.OPERATOR;}
+  [@&\[\]\?\{\}]                   { return CadenceTypes.OPERATOR;}
   {ParamIdentifier}                { return CadenceTypes.FUNCTION_PARAMETER; }
   {TypeIdentifier}                 { return CadenceTypes.TYPE; }
   \):                              { yybegin(TYPE); return CadenceTypes.SEPARATOR;}
   \)                               { yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
-
+  [\+\-\*\\]                       { return CadenceTypes.OPERATOR;}
   /* error cases */
   {LineTerminator}                 { return TokenType.BAD_CHARACTER; }
 }
