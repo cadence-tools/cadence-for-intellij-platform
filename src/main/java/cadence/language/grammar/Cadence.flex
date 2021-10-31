@@ -38,7 +38,7 @@ EndOfLineComment = "//" {InputCharacter}* {LineTerminator}?
 /* identifiers */
 Identifier =  {HexPrefix}?{SimpleIdentifier}\R*
 FullIdentifier = {SimpleIdentifier}{SubIdentifier}+\R*
-SubIdentifier = \.{SimpleIdentifier}
+SubIdentifier = \.{SimpleIdentifier}(\?)?(\!)?
 FunctionIdentifier = {SimpleIdentifier}
 ParamIdentifier = {SimpleIdentifier}:
 TypeIdentifier = {SimpleIdentifier}\?*|{FullIdentifier}\?*
@@ -285,7 +285,7 @@ UnicodeCharacter = (\\u\{)({HexDigit}){1,8}(\})
 }
 <TYPE> {
   {WhiteSpaceOnly}                 { return CadenceTypes.SEPARATOR;}
-  [@&\[\]\?\{\}]                   { return CadenceTypes.OPERATOR;}
+  [@&\[\]\?\{\}<>]                 { return CadenceTypes.OPERATOR;}
   {TypeIdentifier}                 { yybegin(YYINITIAL); return CadenceTypes.TYPE; }
 
   /* error cases */
@@ -294,14 +294,15 @@ UnicodeCharacter = (\\u\{)({HexDigit}){1,8}(\})
 <FUNCTION_PARAMS> {
   ,                                { return CadenceTypes.SEPARATOR;}
   {WhiteSpaceOnly}                 { return CadenceTypes.SEPARATOR;}
-  [@&\[\]\?\{\}]                   { return CadenceTypes.OPERATOR;}
+  {LineTerminator}                 { return CadenceTypes.SEPARATOR;}
+  [@&\[\]\?\{\}<>]                 { return CadenceTypes.OPERATOR;}
   {ParamIdentifier}                { return CadenceTypes.FUNCTION_PARAMETER; }
-  {TypeIdentifier}                 { return CadenceTypes.TYPE; }
+  {TypeIdentifier}                 { return CadenceTypes.TYPE;}
+  {SimpleIdentifier}\(\)           { return CadenceTypes.SEPARATOR;} //This is for function calling, can only be properly fixed when this is implemented
+  \(                               { return CadenceTypes.SEPARATOR;} //This is for function calling, can only be properly fixed when this is implemented
   \):                              { yybegin(TYPE); return CadenceTypes.SEPARATOR;}
   \)                               { yybegin(YYINITIAL); return CadenceTypes.SEPARATOR;}
   [\+\-\*\\]                       { return CadenceTypes.OPERATOR;}
-  /* error cases */
-  {LineTerminator}                 { return TokenType.BAD_CHARACTER; }
 }
 
 // Need separate state for access to correctly handle cases like access(contract), where contract is also keyword
