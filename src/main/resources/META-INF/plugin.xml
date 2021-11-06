@@ -4,9 +4,12 @@
     <vendor email="cadence.tools@gmail.com" url="https://github.com/cadence-tools/cadence-for-intellij-platform">Cadence Tools</vendor>
 
     <description><![CDATA[
-    Support for <em><a href="https://docs.onflow.org/cadence/language/">Cadence</a></em> language.
-    This plugin provides syntax highlighting and basic language server protocol support for Cadence (.cdc) files.
-    For the language server protocol support, please ensure you have installed flow-cli, and it is available in the PATH
+    <p>Open source support for <em><a href="https://docs.onflow.org/cadence/language/">Cadence</a></em> language.</p>
+    <ul>
+    <li>Syntax highlighting for Cadence (*.cdc) files </li>
+    <li>For the semantic and errors analysis, please ensure you have followed the <a href="https://github.com/cadence-tools/cadence-for-intellij-platform#installation">installation instructions</a></li>
+    <li>For documentation, questions, issues, check the <a href="https://github.com/cadence-tools/cadence-for-intellij-platform#installation">github project</a>
+    </ul>
     ]]></description>
     <change-notes>
         Alpha release, with syntax highlighting and basic language server support
