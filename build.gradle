@@ -25,11 +25,7 @@ intellij {
 patchPluginXml {
     changeNotes = """
          <ul>
-              <li>Basic Language Server Protocol support, if you have flow-cli installed</li>
-              <li>Settings for Language Server Protocol support</li>
-              <li>Settings for debugging Language Server Protocol</li>
-              <li>Fix numbers syntax highlighting</li>
-              <li>General syntax highlighting improvements</li>
+              <li>Improved documentation - instructions for getting the Language Server Protocol support working</li>
          </ul> 
       """
 }
