@@ -61,6 +61,12 @@
 ## Installation
 - You can download the plugin by searching the marketplace in your Intellij Platform IDE
 - Alternative you can get it from the [Jetbrains Marketplace](https://plugins.jetbrains.com/plugin/17764-cadence)
+- For the semantic analysis through the language server to work, you need to:
+  1. Ensure you have [flow-cli installed](https://docs.onflow.org/flow-cli/install/). Running the command `flow`  should works from any terminal (aka it is in your PATH).
+  2. Ensure you have a file with the initial configuration, or generate one (named `flow.json`) by running `flow init`.
+  3. Go to `Settings` -> `Tools` -> `Cadence Settings` and set the location of your flow.json.
+  4. You can also edit the rest of the settings if you want
+  5. Restart Intellij. (In a future release this will be improved so that this step is not needed)
 
 ## Usage
 
@@ -70,9 +76,8 @@
 - You can customize the colors by going to `Settings` -> `Editor` -> `Color Scheme` -> `Cadence`
 
 ### Language Server Protocol Support
-- To utilize the LSP support, you must have [flow-cli](github.com/onflow/flow-cli) installed and available on your PATH
-- You can test it by running on a terminal the command `flow cadence language-server`. (It will tell you that it does nothing when ran from a terminal)
-- You should run the flow emulator from the flow-cli before starting the plugin, with the command `flow emulator start`
+- To utilize the LSP support, ensure you followed the [installation instructions](#installation)
+- If the Language Server is working correctly, you will see a green circle on the bottom toolbar (with information on hover)
 - You can configure the settings for the LSP under `Settings` -> `Tools` -> `Cadence LSP settings`
 - Note: After changing settings, a restart is required for them to take effect. This will be addressed in a future release
 
