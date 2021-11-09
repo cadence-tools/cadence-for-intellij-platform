@@ -24,30 +24,31 @@ public class CadenceSettingsComponent {
     private final JPanel myMainPanel;
     private final JBTextField activeAccountName = new JBTextField();
     private final JBTextField activeAccountAddress = new JBTextField();
+    private final JBTextField flowPath = new JBTextField();
     private final JBTextField configPath = new JBTextField();
     private final JComboBox<EmulatorState> emulatorState = new ComboBox<>(emulatorStates);
     private final JBCheckBox debugLspMessagesActive = new JBCheckBox();
     private final JBTextField debugLogFileStdIn = new JBTextField();
     private final JBTextField debugLogFileStdOut = new JBTextField();
 
-    private final JBCheckBox myIdeaUserStatus = new JBCheckBox("Do you use IntelliJ IDEA? ");
-
     public CadenceSettingsComponent() {
         myMainPanel = FormBuilder.createFormBuilder()
-            .addLabeledComponent(new JBLabel("Active Account Name: "), activeAccountName, 1, false)
-            .addComponent(activeAccountName, 1)
-            .addLabeledComponent(new JBLabel("Active Account Address: "), activeAccountAddress, 2, false)
-            .addComponent(activeAccountAddress, 2)
-            .addLabeledComponent(new JBLabel("Config path (path of flow.json): "), configPath, 3, false)
-            .addComponent(configPath, 3)
-            .addLabeledComponent(new JBLabel("Log Language Server Protocol Messages "), emulatorState, 4, false)
-            .addComponent(debugLspMessagesActive, 4)
-            .addLabeledComponent(new JBLabel("Log file for StdIn messages: "), emulatorState, 5, false)
-            .addComponent(debugLogFileStdIn, 5)
-            .addLabeledComponent(new JBLabel("Log file for StdOut messages: "), emulatorState, 6, false)
-            .addComponent(debugLogFileStdOut, 6)
-            .addLabeledComponent(new JBLabel("Emulator state: "), emulatorState, 7, false)
-            .addComponent(emulatorState, 7)
+            .addLabeledComponent(new JBLabel("Path of flow executable "), configPath, 1, false)
+            .addComponent(flowPath, 1)
+            .addLabeledComponent(new JBLabel("Config path (path of flow.json): "), configPath, 2, false)
+            .addComponent(configPath, 2)
+            .addLabeledComponent(new JBLabel("Active Account Name: "), activeAccountName,  3, false)
+            .addComponent(activeAccountName, 3)
+            .addLabeledComponent(new JBLabel("Active Account Address: "), activeAccountAddress, 4, false)
+            .addComponent(activeAccountAddress, 4)
+            .addLabeledComponent(new JBLabel("Log Language Server Protocol Messages "), emulatorState, 5, false)
+            .addComponent(debugLspMessagesActive, 5)
+            .addLabeledComponent(new JBLabel("Log file for StdIn messages: "), emulatorState, 6, false)
+            .addComponent(debugLogFileStdIn, 6)
+            .addLabeledComponent(new JBLabel("Log file for StdOut messages: "), emulatorState, 7, false)
+            .addComponent(debugLogFileStdOut, 7)
+            .addLabeledComponent(new JBLabel("Emulator state: "), emulatorState, 8, false)
+            .addComponent(emulatorState, 8)
             .addComponentFillVertically(new JPanel(), 0)
             .getPanel();
 
@@ -58,7 +59,15 @@ public class CadenceSettingsComponent {
     }
 
     public JComponent getPreferredFocusedComponent() {
-        return activeAccountName;
+        return flowPath;
+    }
+
+    public String getFlowPathText() {
+        return flowPath.getText();
+    }
+
+    public String getConfigPathText() {
+        return configPath.getText();
     }
 
     public String getActiveAccountNameText() {
@@ -67,10 +76,6 @@ public class CadenceSettingsComponent {
 
     public String getActiveAccountAddressText() {
         return activeAccountAddress.getText();
-    }
-
-    public String getConfigPathText() {
-        return configPath.getText();
     }
 
     public int getEmulatorState() {
@@ -89,16 +94,20 @@ public class CadenceSettingsComponent {
         return debugLspMessagesActive.isSelected();
     }
 
+    public void setFlowPathText(String flowPathText) {
+        flowPath.setText(flowPathText);
+    }
+
+    public void setConfigPathText(String configPathText) {
+        configPath.setText(configPathText);
+    }
+
     public void setActiveAccountNameText(String activeAccountNameText) {
         activeAccountName.setText(activeAccountNameText);
     }
 
     public void setActiveAccountAddressText(String activeAccountAddressText) {
         activeAccountAddress.setText(activeAccountAddressText);
-    }
-
-    public void setConfigPathText(String configPathText) {
-        configPath.setText(configPathText);
     }
 
     public void setEmulatorState(int emulatorStateInt) {

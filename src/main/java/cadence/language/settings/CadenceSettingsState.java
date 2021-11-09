@@ -22,6 +22,7 @@ public class CadenceSettingsState implements PersistentStateComponent<CadenceSet
     public int emulatorState = 2;
     public String activeAccountName = "emulator-account";
     public String activeAccountAddress = "f8d6e0586b0a20c7";
+    public String flowPath = "";
     public String configPath = "/usr/local/bin/flow.json";
     public Boolean debugLspMessagesActive = false;
     public String debugLogFileStdIn = "/tmp/cadence-stdin.log";

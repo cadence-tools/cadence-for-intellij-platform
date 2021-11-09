@@ -67,6 +67,8 @@
   3. Go to `Settings` -> `Tools` -> `Cadence Settings` and set the location of your flow.json.
   4. You can also edit the rest of the settings if you want
   5. Restart Intellij. (In a future release this will be improved so that this step is not needed)
+- :warning: If you get an error `Can't start server due to Cannot run program "flow" ... No such file or directory`, please go to 
+`Settings` -> `Tools` -> `Cadence Settings`, set the absolute path to the flow executable, and restart the IDE 
 
 ## Usage
 

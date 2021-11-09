@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'cadence-language'
-version '0.4.2'
+version '0.4.3'
 
 repositories {
     mavenCentral()
@@ -25,7 +25,8 @@ intellij {
 patchPluginXml {
     changeNotes = """
          <ul>
-              <li>Improved documentation - instructions for getting the Language Server Protocol support working</li>
+              <li>Provide option to set path to flow executable, to solve issue on MacOs</li>
+              <li>Update relevant documentation with instructions</li>
          </ul> 
       """
 }
