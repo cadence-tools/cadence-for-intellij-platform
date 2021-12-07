@@ -14,6 +14,9 @@
     <change-notes>
     </change-notes>
 
+    <!-- Minimum and maximum build version of IDE compatible with the plugin. -->
+    <idea-version since-build="201"/>
+
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>

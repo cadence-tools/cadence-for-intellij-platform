@@ -155,7 +155,7 @@ Once a token is being recognised in the PSI structure, to add highlighting for i
 - Make any required changes to build.gradle (version, changelog, release channel)
 - commit, and push
 - sign the plugin (for now using the sign-plugin.sh , will need to update the version)
-- tag version: ```git tag -a 1.4 -m "my version 1.4"```
+- tag version: ```git tag -a v1.4 -m "Version 1.4"```
 - push tag  ```git push 1.4```
 - make a release in github. Add the generated signed zip found under /build/distribution
 - Go to plugins.jetbrains.com  and upload new version

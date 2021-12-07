@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'cadence-language'
-version '0.4.3'
+version '0.4.4'
 
 repositories {
     mavenCentral()
@@ -20,13 +20,12 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version = '2021.2.2'
+    version = '2021.2.3'
 }
 patchPluginXml {
     changeNotes = """
          <ul>
-              <li>Provide option to set path to flow executable, to solve issue on MacOs</li>
-              <li>Update relevant documentation with instructions</li>
+              <li>Compatibility with IDEA 2021.3</li>
          </ul> 
       """
 }
